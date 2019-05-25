@@ -630,6 +630,14 @@ extern "C"
     /// 		  \include CodeSnippet_connectionN.cpp
 	BENCHTOPDCSERVO_API bool __cdecl BDC_LoadSettings(char const * serialNo, short channel);
 
+	/// <summary> Update device with named settings. </summary>
+	/// <param name="serialNo"> The serial no. </param>
+	/// <param name="channel">  The channel. </param>
+	/// <param name="settingsName"> Name of settings stored away from device. </param>
+	/// <returns> <c>true</c> if successful, false if not. </returns>
+	///             \include CodeSnippet_connection1.cpp
+	BENCHTOPDCSERVO_API bool __cdecl BDC_LoadNamedSettings(char const * serialNo, short channel, char const *settingsName);
+
 	/// <summary>	Persist device settings to device. </summary>
 	/// <param name="serialNo">	The serial no. </param>
 	/// <param name="channel"> 	The channel. </param>

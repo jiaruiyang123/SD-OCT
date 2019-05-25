@@ -111,7 +111,7 @@ extern "C"
 		__int32 _stepAcceleration;
 	} TIM_DriveOPParameters;
 
-	/// <summary> Tim jog parameters. </summary>
+	/// <summary> TIM jog parameters. </summary>
 	typedef struct TIM_JogParameters
 	{
 		/// <summary> The jog mode. </summary>
@@ -124,7 +124,7 @@ extern "C"
 		__int32 _jogStepAcceleration;
 	} TIM_JogParameters;
 
-	/// <summary> Tim button parameters. </summary>
+	/// <summary> TIM button parameters. </summary>
 	typedef struct TIM_ButtonParameters
 	{
 		/// <summary> The button mode. </summary>
@@ -137,7 +137,7 @@ extern "C"
 		__int16 _reserved[2];
 	} TIM_ButtonParameters;
 
-	/// <summary> Tim status. </summary>
+	/// <summary> TIM status. </summary>
 	typedef struct TIM_Status
 	{
 		/// <summary> The position. </summary>
@@ -411,6 +411,13 @@ extern "C"
 	/// <returns> <c>true</c> if successful, false if not. </returns>
     /// 		  \include CodeSnippet_connection1.cpp
 	TCUBEINERTIALMOTOR_API bool __cdecl TIM_LoadSettings(char const * serialNo);
+
+	/// <summary> Update device with named settings. </summary>
+	/// <param name="serialNo"> The device serial no. </param>
+	/// <param name="settingsName"> Name of settings stored away from device. </param>
+	/// <returns> <c>true</c> if successful, false if not. </returns>
+	///             \include CodeSnippet_connection1.cpp
+	TCUBEINERTIALMOTOR_API bool __cdecl TIM_LoadNamedSettings(char const * serialNo, char const *settingsName);
 
 	/// <summary> persist the devices current settings. </summary>
 	/// <param name="serialNo">	The device serial no. </param>

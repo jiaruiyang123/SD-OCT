@@ -407,6 +407,13 @@ extern "C"
     /// 		  \include CodeSnippet_connection1.cpp
 	FILTERFLIPPERDLL_API bool __cdecl FF_LoadSettings(char const * serialNo);
 
+	/// <summary> Update device with named settings. </summary>
+	/// <param name="serialNo"> The device serial no. </param>
+	/// <param name="settingsName"> Name of settings stored away from device. </param>
+	/// <returns> <c>true</c> if successful, false if not. </returns>
+	///             \include CodeSnippet_connection1.cpp
+	FILTERFLIPPERDLL_API bool __cdecl FF_LoadNamedSettings(char const * serialNo, char const *settingsName);
+
 	/// <summary> Persist the devices current settings. </summary>
 	/// <param name="serialNo">	The device serial no. </param>
 	/// <returns> <c>true</c> if successful, false if not. </returns>

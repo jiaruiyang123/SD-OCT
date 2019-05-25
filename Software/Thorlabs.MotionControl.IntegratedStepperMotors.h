@@ -632,6 +632,13 @@ extern "C"
     /// 		  \include CodeSnippet_connection1.cpp
 	ISC_API bool __cdecl ISC_LoadSettings(char const * serialNo);
 
+	/// <summary> Update device with named settings. </summary>
+	/// <param name="serialNo"> The device serial no. </param>
+	/// <param name="settingsName"> Name of settings stored away from device. </param>
+	/// <returns> <c>true</c> if successful, false if not. </returns>
+	///             \include CodeSnippet_connection1.cpp
+	ISC_API bool __cdecl ISC_LoadNamedSettings(char const * serialNo, char const *settingsName);
+
 	/// <summary> persist the devices current settings. </summary>
 	/// <param name="serialNo">	The device serial no. </param>
 	/// <returns> <c>true</c> if successful, false if not. </returns>
@@ -819,7 +826,7 @@ extern "C"
 	/// <seealso cref="SCC_GetJogVelParams(char const * serialNo, int * acceleration, int * maxVelocity)" />
 	/// <seealso cref="SCC_GetJogParamsBlock(char const * serialNo, MOT_JogParameters *jogParams)" />
 	/// 		  \include CodeSnippet_jogpars.cpp
-	ISC_API short __cdecl SCC_RequestJogParams(const char * serialNo);
+	ISC_API short __cdecl ISC_RequestJogParams(const char * serialNo);
 
 	/// <summary> Gets the jog mode. </summary>
 	/// <remarks> see \ref C_MOTOR_sec12 "Jogging" for more detail.<remarks>

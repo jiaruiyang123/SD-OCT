@@ -324,10 +324,10 @@ extern "C"
 
 	/// <summary> Update device with stored settings. </summary>
 	/// <param name="serialNo"> The device serial no. </param>
-	/// <param name="channel">  The channel (1 to n). </param>
+	/// <param name="channelNo">  The channel (1 to n). </param>
 	/// <returns> <c>true</c> if successful, false if not. </returns>
     /// 		  \include CodeSnippet_connectionN.cpp
-	MODULARRACK_API bool __cdecl MMR_LoadSettings(char const * serialNo, short channel);
+	MODULARRACK_API bool __cdecl MMR_LoadSettings(char const * serialNo, short channelNo);
 
 	/// <summary> Disable the channel so that motor can be moved by hand. </summary>
 	/// <remarks> When disabled power is removed from the motor and it can be freely moved.</remarks>

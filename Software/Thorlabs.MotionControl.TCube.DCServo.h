@@ -631,6 +631,14 @@ extern "C"
     /// 		  \include CodeSnippet_connection1.cpp
 	TCUBEDCSERVO_API bool __cdecl CC_LoadSettings(char const * serialNo);
 
+	/// <summary> Update device with named settings. </summary>
+	/// <param name="serialNo"> The device serial no. </param>
+	/// <param name="settingsName"> Name of settings stored away from device. </param>
+	/// <returns> <c>true</c> if successful, false if not. </returns>
+	///             \include CodeSnippet_connection1.cpp
+	TCUBEDCSERVO_API bool __cdecl CC_LoadNamedSettings(char const * serialNo, char const *settingsName);
+
+
 	/// <summary> Update device with stored settings. </summary>
 	/// <param name="serialNo">	The device serial no. </param>
 	/// <returns> <c>true</c> if successful, false if not. </returns>
@@ -671,8 +679,8 @@ extern "C"
 	/// <seealso cref="CC_SetVelParams(char const * serialNo, int acceleration, int maxVelocity)" />
 	/// <seealso cref="CC_GetPosition(char const * serialNo)" />
 	/// <seealso cref="CC_GetVelParams(char const * serialNo, int * acceleration, int * maxVelocity)" />
-	/// <seealso cref="CC_GetVelParamsBlock(char const * serialNo, MOT_VelocityParameters  *velocityParams)" />
-	/// <seealso cref="CC_SetVelParamsBlock(char const * serialNo, MOT_VelocityParameters *velocityParams)" />
+	/// <seealso cref="CC_GetVelParamsBlock(char const * serialNo, MOT_VelocityParameters * velocityParams)" />
+	/// <seealso cref="CC_SetVelParamsBlock(char const * serialNo, MOT_VelocityParameters * velocityParams)" />
 	/// <seealso cref="CC_MoveRelative(char const * serialNo, int displacement)" />
 	/// <seealso cref="CC_MoveAtVelocity(char const * serialNo, MOT_TravelDirection direction)" />
     /// 		  \include CodeSnippet_move.cpp
@@ -798,8 +806,8 @@ extern "C"
 	/// <seealso cref="CC_GetNumberPositions(char const * serialNo)" />
 	/// <seealso cref="CC_GetVelParams(char const * serialNo, int * acceleration, int * maxVelocity)" />
 	/// <seealso cref="CC_SetVelParams(char const * serialNo, int acceleration, int maxVelocity)" />
-	/// <seealso cref="CC_GetVelParamsBlock(char const * serialNo, MOT_VelocityParameters  *velocityParams)" />
-	/// <seealso cref="CC_SetVelParamsBlock(char const * serialNo, MOT_VelocityParameters *velocityParams)" />
+	/// <seealso cref="CC_GetVelParamsBlock(char const * serialNo, MOT_VelocityParameters * velocityParams)" />
+	/// <seealso cref="CC_SetVelParamsBlock(char const * serialNo, MOT_VelocityParameters * velocityParams)" />
 	/// <seealso cref="CC_MoveToPosition(char const * serialNo, int index)" />
 	/// <seealso cref="CC_MoveAtVelocity(char const * serialNo, MOT_TravelDirection direction)" />
     /// 		  \include CodeSnippet_move.cpp
@@ -958,7 +966,7 @@ extern "C"
 	/// <param name="serialNo"> The serial no. </param>
 	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
 	/// <seealso cref="CC_GetVelParams(char const * serialNo, int * acceleration, int * maxVelocity)" />
-	/// <seealso cref="CC_GetVelParamsBlock(char const * serialNo, MOT_VelocityParameters  *velocityParams)" />
+	/// <seealso cref="CC_GetVelParamsBlock(char const * serialNo, MOT_VelocityParameters * velocityParams)" />
 	TCUBEDCSERVO_API short __cdecl CC_RequestVelParams(char const * serialNo);
 
 	/// <summary> Gets the move velocity parameters. </summary>
@@ -969,8 +977,8 @@ extern "C"
 	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
 	/// <seealso cref="CC_RequestVelParams(char const * serialNo)" />
 	/// <seealso cref="CC_SetVelParams(char const * serialNo, int acceleration, int maxVelocity)" />
-	/// <seealso cref="CC_GetVelParamsBlock(char const * serialNo, MOT_VelocityParameters  *velocityParams)" />
-	/// <seealso cref="CC_SetVelParamsBlock(char const * serialNo, MOT_VelocityParameters *velocityParams)" />
+	/// <seealso cref="CC_GetVelParamsBlock(char const * serialNo, MOT_VelocityParameters * velocityParams)" />
+	/// <seealso cref="CC_SetVelParamsBlock(char const * serialNo, MOT_VelocityParameters * velocityParams)" />
 	/// <seealso cref="CC_MoveToPosition(char const * serialNo, int index)" />
 	/// <seealso cref="CC_MoveRelative(char const * serialNo, int displacement)" />
 	/// <seealso cref="CC_MoveAtVelocity(char const * serialNo, MOT_TravelDirection direction)" />
@@ -984,8 +992,8 @@ extern "C"
 	/// <param name="maxVelocity"> The new maximum velocity value in \ref DeviceUnits_page. </param>
 	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
 	/// <seealso cref="CC_GetVelParams(char const * serialNo, int * acceleration, int * maxVelocity)" />
-	/// <seealso cref="CC_GetVelParamsBlock(char const * serialNo, MOT_VelocityParameters  *velocityParams)" />
-	/// <seealso cref="CC_SetVelParamsBlock(char const * serialNo, MOT_VelocityParameters *velocityParams)" />
+	/// <seealso cref="CC_GetVelParamsBlock(char const * serialNo, MOT_VelocityParameters * velocityParams)" />
+	/// <seealso cref="CC_SetVelParamsBlock(char const * serialNo, MOT_VelocityParameters * velocityParams)" />
 	/// <seealso cref="CC_MoveToPosition(char const * serialNo, int index)" />
 	/// <seealso cref="CC_MoveRelative(char const * serialNo, int displacement)" />
 	/// <seealso cref="CC_MoveAtVelocity(char const * serialNo, MOT_TravelDirection direction)" />
@@ -1003,8 +1011,8 @@ extern "C"
 	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
 	/// <seealso cref="CC_GetVelParams(char const * serialNo, int * acceleration, int * maxVelocity)" />
 	/// <seealso cref="CC_SetVelParams(char const * serialNo, int acceleration, int maxVelocity)" />
-	/// <seealso cref="CC_GetVelParamsBlock(char const * serialNo, MOT_VelocityParameters  *velocityParams)" />
-	/// <seealso cref="CC_SetVelParamsBlock(char const * serialNo, MOT_VelocityParameters *velocityParams)" />
+	/// <seealso cref="CC_GetVelParamsBlock(char const * serialNo, MOT_VelocityParameters * velocityParams)" />
+	/// <seealso cref="CC_SetVelParamsBlock(char const * serialNo, MOT_VelocityParameters * velocityParams)" />
 	/// <seealso cref="CC_MoveToPosition(char const * serialNo, int index)" />
 	/// <seealso cref="CC_MoveRelative(char const * serialNo, int displacement)" />
     /// 		  \include CodeSnippet_move.cpp
@@ -1284,7 +1292,7 @@ extern "C"
 	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
 	/// <seealso cref="CC_GetVelParams(char const * serialNo, int * acceleration, int * maxVelocity)" />
 	/// <seealso cref="CC_SetVelParams(char const * serialNo, int acceleration, int maxVelocity)" />
-	/// <seealso cref="CC_GetVelParamsBlock(char const * serialNo, MOT_VelocityParameters  *velocityParams)" />
+	/// <seealso cref="CC_GetVelParamsBlock(char const * serialNo, MOT_VelocityParameters * velocityParams)" />
 	/// <seealso cref="CC_MoveToPosition(char const * serialNo, int index)" />
 	/// <seealso cref="CC_MoveRelative(char const * serialNo, int displacement)" />
 	/// <seealso cref="CC_MoveAtVelocity(char const * serialNo, MOT_TravelDirection direction)" />

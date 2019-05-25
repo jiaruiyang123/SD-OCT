@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <SettingsCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" >
-  <Info Date="17 Oct 2017" Version="1.14.0" />
+  <Info Date="11 Dec 2017" Version="1.14.4" />
   <Devices>
     <DeviceType ID="40" Name="BSC101">
       <DeviceSettings>
@@ -299,174 +299,174 @@
     <DeviceType ID="26" Name="KST101">
       <DeviceSettings>
         <DeviceSettingsType Name="TST FW104 Dichroic Filter Wheel" ActuatorImage="FW104" HardwareRevision="3" Legacy="true" />
-        <DeviceSettingsType Name="HS ZST6(B)" ActuatorImage="ZST6" HardwareRevision="3" Legacy="true" />
-        <DeviceSettingsType Name="HS ZST13(B)" ActuatorImage="ZST13" HardwareRevision="3" Legacy="true"/>
-        <DeviceSettingsType Name="HS ZST25(B)" ActuatorImage="ZST25" HardwareRevision="3" Legacy="true" />
+        <DeviceSettingsType Name="HS ZST6(B)" ActuatorImage="ZST6" HardwareRevision="3" Legacy="true" StageIDs="32" />
+        <DeviceSettingsType Name="HS ZST13(B)" ActuatorImage="ZST13" HardwareRevision="3" Legacy="true" StageIDs="33"/>
+        <DeviceSettingsType Name="HS ZST25(B)" ActuatorImage="ZST25" HardwareRevision="3" Legacy="true" StageIDs="34" />
           
-        <DeviceSettingsType Name="HS ZST206" ActuatorImage="ZST206" HardwareRevision="3" Settings="HS ZST206(B)"/>
-        <DeviceSettingsType Name="HS ZST206(B)" ActuatorImage="ZST206" HardwareRevision="3" />
-        <DeviceSettingsType Name="HS ZST213(B)" ActuatorImage="ZST213" HardwareRevision="3" Settings="HS ZST213(B)"/>
-        <DeviceSettingsType Name="HS ZST213" ActuatorImage="ZST213" HardwareRevision="3" Settings="HS ZST213(B)"/>
-        <DeviceSettingsType Name="HS ZST213B" ActuatorImage="ZST213B" HardwareRevision="3" />
-        <DeviceSettingsType Name="HS ZST225(B)" ActuatorImage="ZST225B" HardwareRevision="3" />
-        <DeviceSettingsType Name="HS ZST225B" ActuatorImage="ZST225B" HardwareRevision="3" Settings="HS ZST225(B)"/>
-        <DeviceSettingsType Name="HS ZFS6(B)" ActuatorImage="ZFS06" HardwareRevision="3" />
-        <DeviceSettingsType Name="HS ZFS6" ActuatorImage="ZFS06" HardwareRevision="3" Settings="HS ZFS6(B)"/>
-        <DeviceSettingsType Name="HS ZFS13(B)" ActuatorImage="ZFS13" HardwareRevision="3" />
-        <DeviceSettingsType Name="HS ZFS13" ActuatorImage="ZFS13" HardwareRevision="3" Settings="HS ZFS13(B)"/>
-        <DeviceSettingsType Name="HS ZFS13B" ActuatorImage="ZFS13B" HardwareRevision="3" Settings="HS ZFS13(B)"/>
-        <DeviceSettingsType Name="HS ZFS25(B)" ActuatorImage="ZFS25B" HardwareRevision="3" />
-        <DeviceSettingsType Name="HS ZFS25B" ActuatorImage="ZFS25B" HardwareRevision="3" Settings="HS ZFS25(B)"/>
-        <DeviceSettingsType Name="HS TST DRV013 25mm" ActuatorImage="DRV013" HardwareRevision="3" />
-        <DeviceSettingsType Name="HS TST DRV014 50mm" ActuatorImage="DRV014" HardwareRevision="3" />
-        <DeviceSettingsType Name="HS TST NR360S" ActuatorImage="NR360" HardwareRevision="3" />
-        <DeviceSettingsType Name="HS TST NR360S/M" ActuatorImage="NR360" HardwareRevision="3" Settings="HS TST NR360S"/>
-        <DeviceSettingsType Name="HS TST FW103 Filter Wheel" ActuatorImage="FW103" HardwareRevision="3" />
-        <DeviceSettingsType Name="TST FW103 Filter Wheel" ActuatorImage="FW103" HardwareRevision="3" Settings="HS TST FW103 Filter Wheel"/>
-        <DeviceSettingsType Name="PLS3" HardwareRevision="3" />
-        <DeviceSettingsType Name="PLS2" HardwareRevision="3" />
+        <DeviceSettingsType Name="HS ZST206" ActuatorImage="ZST206" HardwareRevision="3" Settings="HS ZST206(B)" StageIDs="48"/>
+        <DeviceSettingsType Name="HS ZST206(B)" ActuatorImage="ZST206" HardwareRevision="3" StageIDs="48" />
+        <DeviceSettingsType Name="HS ZST213(B)" ActuatorImage="ZST213" HardwareRevision="3" Settings="HS ZST213(B)" StageIDs="49"/>
+        <DeviceSettingsType Name="HS ZST213" ActuatorImage="ZST213" HardwareRevision="3" Settings="HS ZST213(B)" StageIDs="49"/>
+        <DeviceSettingsType Name="HS ZST213B" ActuatorImage="ZST213B" HardwareRevision="3"  StageIDs="49" />
+        <DeviceSettingsType Name="HS ZST225(B)" ActuatorImage="ZST225B" HardwareRevision="3" StageIDs="50" />
+        <DeviceSettingsType Name="HS ZST225B" ActuatorImage="ZST225B" HardwareRevision="3" Settings="HS ZST225(B)" StageIDs="50" />
+        <DeviceSettingsType Name="HS ZFS6(B)" ActuatorImage="ZFS06" HardwareRevision="3" StageIDs="64" />
+        <DeviceSettingsType Name="HS ZFS6" ActuatorImage="ZFS06" HardwareRevision="3" Settings="HS ZFS6(B)" StageIDs="64"/>
+        <DeviceSettingsType Name="HS ZFS13(B)" ActuatorImage="ZFS13" HardwareRevision="3" StageIDs="65" />
+        <DeviceSettingsType Name="HS ZFS13" ActuatorImage="ZFS13" HardwareRevision="3" Settings="HS ZFS13(B)" StageIDs="65"/>
+        <DeviceSettingsType Name="HS ZFS13B" ActuatorImage="ZFS13B" HardwareRevision="3" Settings="HS ZFS13(B)" StageIDs="65"/>
+        <DeviceSettingsType Name="HS ZFS25(B)" ActuatorImage="ZFS25B" HardwareRevision="3" StageIDs="66" />
+        <DeviceSettingsType Name="HS ZFS25B" ActuatorImage="ZFS25B" HardwareRevision="3" Settings="HS ZFS25(B)" StageIDs="66" />
+        <DeviceSettingsType Name="HS TST DRV013 25mm" ActuatorImage="DRV013" HardwareRevision="3" StageIDs="80" />
+        <DeviceSettingsType Name="HS TST DRV014 50mm" ActuatorImage="DRV014" HardwareRevision="3" StageIDs="81" />
+        <DeviceSettingsType Name="HS TST NR360S" ActuatorImage="NR360" HardwareRevision="3" StageIDs="112" />
+        <DeviceSettingsType Name="HS TST NR360S/M" ActuatorImage="NR360" HardwareRevision="3" Settings="HS TST NR360S" StageIDs="112"/>
+        <DeviceSettingsType Name="HS TST FW103 Filter Wheel" ActuatorImage="FW103" HardwareRevision="3" StageIDs="117" />
+        <DeviceSettingsType Name="TST FW103 Filter Wheel" ActuatorImage="FW103" HardwareRevision="3" Settings="HS TST FW103 Filter Wheel" StageIDs="117" />
+        <DeviceSettingsType Name="PLS2" HardwareRevision="3" StageIDs="114" />
+        <DeviceSettingsType Name="PLS3" HardwareRevision="3" StageIDs="115" />
       </DeviceSettings>
     </DeviceType>
     <DeviceType ID="80" Name="TST001">
       <DeviceSettings>
-        <DeviceSettingsType Name="ZST6(B)" ActuatorImage="ZST6" HardwareRevision="1" Legacy="true"/>
-        <DeviceSettingsType Name="ZST13(B)" ActuatorImage="ZST13" HardwareRevision="1" Legacy="true"/>
-        <DeviceSettingsType Name="ZST25(B)" ActuatorImage="ZST25" HardwareRevision="1" Legacy="true"/>
+        <DeviceSettingsType Name="ZST6(B)" ActuatorImage="ZST6" HardwareRevision="1" Legacy="true" StageIDs="32"/>
+        <DeviceSettingsType Name="ZST13(B)" ActuatorImage="ZST13" HardwareRevision="1" Legacy="true" StageIDs="33"/>
+        <DeviceSettingsType Name="ZST25(B)" ActuatorImage="ZST25" HardwareRevision="1" Legacy="true" StageIDs="34"/>
           
         <DeviceSettingsType Name="TST FW104 Dichroic Filter Wheel" ActuatorImage="FW104" HardwareRevision="1" Legacy="true"/>
         <DeviceSettingsType Name="ZST DT-34" HardwareRevision="1" />
           
-        <DeviceSettingsType Name="ZST206" ActuatorImage="ZST206" HardwareRevision="3" Settings="ZST206(B)"/>
-        <DeviceSettingsType Name="ZST206(B)" ActuatorImage="ZST206" HardwareRevision="3" />
-        <DeviceSettingsType Name="ZST213(B)" ActuatorImage="ZST213" HardwareRevision="3" Settings="ZST213(B)"/>
-        <DeviceSettingsType Name="ZST213" ActuatorImage="ZST213" HardwareRevision="3" Settings="ZST213(B)"/>
-        <DeviceSettingsType Name="ZST213B" ActuatorImage="ZST213B" HardwareRevision="3" />
-        <DeviceSettingsType Name="ZST225(B)" ActuatorImage="ZST225B" HardwareRevision="3" />
-        <DeviceSettingsType Name="ZST225B" ActuatorImage="ZST225B" HardwareRevision="3" Settings="ZST225(B)"/>
-        <DeviceSettingsType Name="ZFS6(B)" ActuatorImage="ZFS06" HardwareRevision="3" />
-        <DeviceSettingsType Name="ZFS6" ActuatorImage="ZFS06" HardwareRevision="3" Settings="ZFS6(B)"/>
-        <DeviceSettingsType Name="ZFS13(B)" ActuatorImage="ZFS13" HardwareRevision="3" />
-        <DeviceSettingsType Name="ZFS13" ActuatorImage="ZFS13" HardwareRevision="3" Settings="ZFS13(B)"/>
-        <DeviceSettingsType Name="ZFS13B" ActuatorImage="ZFS13B" HardwareRevision="3" Settings="ZFS13(B)"/>
-        <DeviceSettingsType Name="ZFS25(B)" ActuatorImage="ZFS25B" HardwareRevision="3" />
-        <DeviceSettingsType Name="ZFS25B" ActuatorImage="ZFS25B" HardwareRevision="3" Settings="ZFS25(B)"/>
+        <DeviceSettingsType Name="ZST206" ActuatorImage="ZST206" HardwareRevision="1" Settings="ZST206(B)" StageIDs="48"/>
+        <DeviceSettingsType Name="ZST206(B)" ActuatorImage="ZST206" HardwareRevision="1" StageIDs="48"/>
+        <DeviceSettingsType Name="ZST213(B)" ActuatorImage="ZST213" HardwareRevision="1" Settings="ZST213(B)" StageIDs="49"/>
+        <DeviceSettingsType Name="ZST213" ActuatorImage="ZST213" HardwareRevision="1" Settings="ZST213(B)" StageIDs="49"/>
+        <DeviceSettingsType Name="ZST213B" ActuatorImage="ZST213B" HardwareRevision="1" StageIDs="49"/>
+        <DeviceSettingsType Name="ZST225(B)" ActuatorImage="ZST225B" HardwareRevision="1" StageIDs="50"/>
+        <DeviceSettingsType Name="ZST225B" ActuatorImage="ZST225B" HardwareRevision="1" Settings="ZST225(B)" StageIDs="50"/>
+        <DeviceSettingsType Name="ZFS6(B)" ActuatorImage="ZFS06" HardwareRevision="1" StageIDs="64" />
+        <DeviceSettingsType Name="ZFS6" ActuatorImage="ZFS06" HardwareRevision="1" Settings="ZFS6(B)" StageIDs="64"/>
+        <DeviceSettingsType Name="ZFS13(B)" ActuatorImage="ZFS13" HardwareRevision="1" StageIDs="65" />
+        <DeviceSettingsType Name="ZFS13" ActuatorImage="ZFS13" HardwareRevision="1" Settings="ZFS13(B)" StageIDs="65"/>
+        <DeviceSettingsType Name="ZFS13B" ActuatorImage="ZFS13B" HardwareRevision="1" Settings="ZFS13(B)" StageIDs="65"/>
+        <DeviceSettingsType Name="ZFS25(B)" ActuatorImage="ZFS25B" HardwareRevision="1" StageIDs="66" />
+        <DeviceSettingsType Name="ZFS25B" ActuatorImage="ZFS25B" HardwareRevision="1" Settings="ZFS25(B)" StageIDs="66"/>
           
-        <DeviceSettingsType Name="TST DRV013 25mm" ActuatorImage="DRV013" HardwareRevision="1"/>
-        <DeviceSettingsType Name="TST DRV014 50mm" ActuatorImage="DRV014" HardwareRevision="1"/>
+        <DeviceSettingsType Name="TST DRV013 25mm" ActuatorImage="DRV013" HardwareRevision="1" StageIDs="80"/>
+        <DeviceSettingsType Name="TST DRV014 50mm" ActuatorImage="DRV014" HardwareRevision="1" StageIDs="81"/>
 
-        <DeviceSettingsType Name="HS ZST6(B)" ActuatorImage="ZST6" HardwareRevision="3" Legacy="true" />
-        <DeviceSettingsType Name="HS ZST13(B)" ActuatorImage="ZST13" HardwareRevision="3" Legacy="true"/>
-        <DeviceSettingsType Name="HS ZST25(B)" ActuatorImage="ZST25" HardwareRevision="3" Legacy="true" />
+        <DeviceSettingsType Name="HS ZST6(B)" ActuatorImage="ZST6" HardwareRevision="3" Legacy="true" StageIDs="32" />
+        <DeviceSettingsType Name="HS ZST13(B)" ActuatorImage="ZST13" HardwareRevision="3" Legacy="true" StageIDs="33"/>
+        <DeviceSettingsType Name="HS ZST25(B)" ActuatorImage="ZST25" HardwareRevision="3" Legacy="true" StageIDs="34" />
           
-        <DeviceSettingsType Name="HS ZST206" ActuatorImage="ZST206" HardwareRevision="3" Settings="HS ZST206(B)"/>
-        <DeviceSettingsType Name="HS ZST206(B)" ActuatorImage="ZST206" HardwareRevision="3" />
-        <DeviceSettingsType Name="HS ZST213(B)" ActuatorImage="ZST213" HardwareRevision="3" Settings="HS ZST213(B)"/>
-        <DeviceSettingsType Name="HS ZST213" ActuatorImage="ZST213" HardwareRevision="3" Settings="HS ZST213(B)"/>
-        <DeviceSettingsType Name="HS ZST213B" ActuatorImage="ZST213B" HardwareRevision="3" />
-        <DeviceSettingsType Name="HS ZST225(B)" ActuatorImage="ZST225B" HardwareRevision="3" />
-        <DeviceSettingsType Name="HS ZST225B" ActuatorImage="ZST225B" HardwareRevision="3" Settings="HS ZST225(B)"/>
-        <DeviceSettingsType Name="HS ZFS6(B)" ActuatorImage="ZFS06" HardwareRevision="3" />
-        <DeviceSettingsType Name="HS ZFS6" ActuatorImage="ZFS06" HardwareRevision="3" Settings="HS ZFS6(B)"/>
-        <DeviceSettingsType Name="HS ZFS13(B)" ActuatorImage="ZFS13" HardwareRevision="3" />
-        <DeviceSettingsType Name="HS ZFS13" ActuatorImage="ZFS13" HardwareRevision="3" Settings="HS ZFS13(B)"/>
-        <DeviceSettingsType Name="HS ZFS13B" ActuatorImage="ZFS13B" HardwareRevision="3" Settings="HS ZFS13(B)"/>
-        <DeviceSettingsType Name="HS ZFS25(B)" ActuatorImage="ZFS25B" HardwareRevision="3" />
-        <DeviceSettingsType Name="HS ZFS25B" ActuatorImage="ZFS25B" HardwareRevision="3" Settings="HS ZFS25(B)"/>
-        <DeviceSettingsType Name="HS TST DRV013 25mm" ActuatorImage="DRV013" HardwareRevision="3" />
-        <DeviceSettingsType Name="HS TST DRV014 50mm" ActuatorImage="DRV014" HardwareRevision="3" />
-        <DeviceSettingsType Name="HS TST NR360S" ActuatorImage="NR360" HardwareRevision="3" />
-        <DeviceSettingsType Name="HS TST FW103 Filter Wheel" ActuatorImage="FW103" HardwareRevision="3" />
-        <DeviceSettingsType Name="TST FW103 Filter Wheel" ActuatorImage="FW103" HardwareRevision="3" Settings="HS TST FW103 Filter Wheel"/>
+        <DeviceSettingsType Name="HS ZST206" ActuatorImage="ZST206" HardwareRevision="3" Settings="HS ZST206(B)" StageIDs="48"/>
+        <DeviceSettingsType Name="HS ZST206(B)" ActuatorImage="ZST206" HardwareRevision="3" StageIDs="48" />
+        <DeviceSettingsType Name="HS ZST213(B)" ActuatorImage="ZST213" HardwareRevision="3" Settings="HS ZST213(B)" StageIDs="49"/>
+        <DeviceSettingsType Name="HS ZST213" ActuatorImage="ZST213" HardwareRevision="3" Settings="HS ZST213(B)" StageIDs="49"/>
+        <DeviceSettingsType Name="HS ZST213B" ActuatorImage="ZST213B" HardwareRevision="3" StageIDs="49" />
+        <DeviceSettingsType Name="HS ZST225(B)" ActuatorImage="ZST225B" HardwareRevision="3" StageIDs="50" />
+        <DeviceSettingsType Name="HS ZST225B" ActuatorImage="ZST225B" HardwareRevision="3" Settings="HS ZST225(B)" StageIDs="50"/>
+        <DeviceSettingsType Name="HS ZFS6(B)" ActuatorImage="ZFS06" HardwareRevision="3" StageIDs="64" />
+        <DeviceSettingsType Name="HS ZFS6" ActuatorImage="ZFS06" HardwareRevision="3" Settings="HS ZFS6(B)" StageIDs="64"/>
+        <DeviceSettingsType Name="HS ZFS13(B)" ActuatorImage="ZFS13" HardwareRevision="3"  StageIDs="65"/>
+        <DeviceSettingsType Name="HS ZFS13" ActuatorImage="ZFS13" HardwareRevision="3" Settings="HS ZFS13(B)" StageIDs="65"/>
+        <DeviceSettingsType Name="HS ZFS13B" ActuatorImage="ZFS13B" HardwareRevision="3" Settings="HS ZFS13(B)" StageIDs="65"/>
+        <DeviceSettingsType Name="HS ZFS25(B)" ActuatorImage="ZFS25B" HardwareRevision="3" StageIDs="66" />
+        <DeviceSettingsType Name="HS ZFS25B" ActuatorImage="ZFS25B" HardwareRevision="3" Settings="HS ZFS25(B)" StageIDs="66"/>
+        <DeviceSettingsType Name="HS TST DRV013 25mm" ActuatorImage="DRV013" HardwareRevision="3" StageIDs="80" />
+        <DeviceSettingsType Name="HS TST DRV014 50mm" ActuatorImage="DRV014" HardwareRevision="3" StageIDs="81" />
+        <DeviceSettingsType Name="HS TST NR360S" ActuatorImage="NR360" HardwareRevision="3" StageIDs="112" />
+        <DeviceSettingsType Name="HS TST FW103 Filter Wheel" ActuatorImage="FW103" HardwareRevision="3" StageIDs="117" />
+        <DeviceSettingsType Name="TST FW103 Filter Wheel" ActuatorImage="FW103" HardwareRevision="3" Settings="HS TST FW103 Filter Wheel" StageIDs="117"/>
       </DeviceSettings>
     </DeviceType>
     <DeviceType ID="83" Name="TDC001">
       <DeviceSettings>
-        <DeviceSettingsType Name="GNL10-Z6" ActuatorImage="GNL10" Legacy="true"/>
-        <DeviceSettingsType Name="GNL18-Z6" ActuatorImage="GNL18" Legacy="true"/>
-        <DeviceSettingsType Name="MTS25" ActuatorImage="MTS25Z8" Legacy="true"/>
-        <DeviceSettingsType Name="MTS50" ActuatorImage="MTS50Z8" Legacy="true"/>
+        <DeviceSettingsType Name="GNL10-Z6" ActuatorImage="GNL10" Legacy="true" StageIDs="3" />
+        <DeviceSettingsType Name="GNL18-Z6" ActuatorImage="GNL18" Legacy="true" StageIDs="3" />
+        <DeviceSettingsType Name="MTS25" ActuatorImage="MTS25Z8" Legacy="true" StageIDs="7" />
+        <DeviceSettingsType Name="MTS50" ActuatorImage="MTS50Z8" Legacy="true" StageIDs="8" />
         <DeviceSettingsType Name="PRM1-Z7" ActuatorImage="PRM1Z7" Legacy="true"/>
-        <DeviceSettingsType Name="Z606(B)" ActuatorImage="Z606" Legacy="true"/>
-        <DeviceSettingsType Name="Z612(B)" ActuatorImage="Z612" Legacy="true"/>
-        <DeviceSettingsType Name="Z625(B)" ActuatorImage="Z625" Legacy="true"/>
-        <DeviceSettingsType Name="Z625(B)64:1" ActuatorImage="Z625" Legacy="true"/>
-        <DeviceSettingsType Name="T25X" ActuatorImage="T25X" Legacy="true"/>
-        <DeviceSettingsType Name="MGS80" ActuatorImage="MGS80" Legacy="true"/>
-        <DeviceSettingsType Name="MGS60" ActuatorImage="MGS60" Legacy="true"/>
-        <DeviceSettingsType Name="CR1-Z6" ActuatorImage="CR1Z6" Legacy="true"/>
+        <DeviceSettingsType Name="Z606(B)" ActuatorImage="Z606" Legacy="true" StageIDs="2" />
+        <DeviceSettingsType Name="Z612(B)" ActuatorImage="Z612" Legacy="true" StageIDs="3" />
+        <DeviceSettingsType Name="Z625(B)" ActuatorImage="Z625" Legacy="true" StageIDs="4" />
+        <DeviceSettingsType Name="Z625(B)64:1" ActuatorImage="Z625" Legacy="true" StageIDs="4" />
+        <DeviceSettingsType Name="T25X" ActuatorImage="T25X" Legacy="true" StageIDs="20"/>
+        <DeviceSettingsType Name="MGS80" ActuatorImage="MGS80" Legacy="true" StageIDs="19"/>
+        <DeviceSettingsType Name="MGS60" ActuatorImage="MGS60" Legacy="true" StageIDs="18"/>
+        <DeviceSettingsType Name="CR1-Z6" ActuatorImage="CR1Z6" Legacy="true" StageIDs="5"/>
           
           
-        <DeviceSettingsType Name="Z806" ActuatorImage="Z806" />
-        <DeviceSettingsType Name="Z806V" ActuatorImage="Z806V" Settings="Z806"/>
-        <DeviceSettingsType Name="Z812" ActuatorImage="Z812" />
-        <DeviceSettingsType Name="Z812V" ActuatorImage="Z812V" Settings="Z812" />
-        <DeviceSettingsType Name="Z812B" ActuatorImage="Z812B" Settings="Z812" />
-        <DeviceSettingsType Name="Z812BV" ActuatorImage="Z812BV" Settings="Z812" />
-        <DeviceSettingsType Name="Z825" ActuatorImage="Z825B" />
-        <DeviceSettingsType Name="Z825B" ActuatorImage="Z825B" Settings="Z825"/>
-        <DeviceSettingsType Name="Z825V"  ActuatorImage="Z825BV"/>
-        <DeviceSettingsType Name="GNL10-Z8" ActuatorImage="GNL10" />
-        <DeviceSettingsType Name="GNL10-Z8/M" ActuatorImage="GNL10M" Settings="GNL10-Z8"/>
-        <DeviceSettingsType Name="GNL18-Z8" ActuatorImage="GNL18" />
-        <DeviceSettingsType Name="GNL18-Z8/M" ActuatorImage="GNL18M" Settings="GNL18-Z8"/>
-        <DeviceSettingsType Name="PRM1-Z8"  ActuatorImage="PRM1Z8" />
-        <DeviceSettingsType Name="PRM1/M-Z8"  ActuatorImage="PRM1Z8" Settings="PRM1-Z8"/>
-        <DeviceSettingsType Name="MTS25-Z8" ActuatorImage="MTS25Z8" />
-        <DeviceSettingsType Name="MTS25/M-Z8" ActuatorImage="MTS25Z8" Settings="MTS25-Z8" />
-        <DeviceSettingsType Name="MTS50-Z8" ActuatorImage="MTS50Z8" />
-        <DeviceSettingsType Name="MTS50/M-Z8" ActuatorImage="MTS50Z8" Settings="MTS50-Z8" />
+        <DeviceSettingsType Name="Z806" ActuatorImage="Z806" StageIDs="11" />
+        <DeviceSettingsType Name="Z806V" ActuatorImage="Z806V" Settings="Z806" StageIDs="11" />
+        <DeviceSettingsType Name="Z812" ActuatorImage="Z812" StageIDs="10" />
+        <DeviceSettingsType Name="Z812V" ActuatorImage="Z812V" Settings="Z812" StageIDs="10" />
+        <DeviceSettingsType Name="Z812B" ActuatorImage="Z812B" Settings="Z812" StageIDs="10" />
+        <DeviceSettingsType Name="Z812BV" ActuatorImage="Z812BV" Settings="Z812" StageIDs="10" />
+        <DeviceSettingsType Name="Z825" ActuatorImage="Z825B" StageIDs="9" />
+        <DeviceSettingsType Name="Z825B" ActuatorImage="Z825B" Settings="Z825" StageIDs="9"/>
+        <DeviceSettingsType Name="Z825V"  ActuatorImage="Z825BV" StageIDs="9"/>
+        <DeviceSettingsType Name="GNL10-Z8" ActuatorImage="GNL10" StageIDs="10,16" />
+        <DeviceSettingsType Name="GNL10-Z8/M" ActuatorImage="GNL10M" Settings="GNL10-Z8" StageIDs="10,16"/>
+        <DeviceSettingsType Name="GNL18-Z8" ActuatorImage="GNL18" StageIDs="10,17" />
+        <DeviceSettingsType Name="GNL18-Z8/M" ActuatorImage="GNL18M" Settings="GNL18-Z8" StageIDs="10,17"/>
+        <DeviceSettingsType Name="PRM1-Z8"  ActuatorImage="PRM1Z8" StageIDs="6" />
+        <DeviceSettingsType Name="PRM1/M-Z8"  ActuatorImage="PRM1Z8" Settings="PRM1-Z8" StageIDs="6"/>
+        <DeviceSettingsType Name="MTS25-Z8" ActuatorImage="MTS25Z8" StageIDs="7" />
+        <DeviceSettingsType Name="MTS25/M-Z8" ActuatorImage="MTS25Z8" Settings="MTS25-Z8" StageIDs="7" />
+        <DeviceSettingsType Name="MTS50-Z8" ActuatorImage="MTS50Z8" StageIDs="8" />
+        <DeviceSettingsType Name="MTS50/M-Z8" ActuatorImage="MTS50Z8" Settings="MTS50-Z8" StageIDs="8" />
         <DeviceSettingsType Name="ZM1" />
-        <DeviceSettingsType Name="MT1-Z8" ActuatorImage="MT1Z8" />
-        <DeviceSettingsType Name="CR1-Z7" ActuatorImage="CR1Z7" />
-        <DeviceSettingsType Name="PY004Z8 Yaw" />
-        <DeviceSettingsType Name="PY004Z8 Pitch" />
-        <DeviceSettingsType Name="PRMTZ8"  ActuatorImage="PRMTZ8" />
-        <DeviceSettingsType Name="PRMTZ8/M" ActuatorImage="PRMTZ8" Settings="PRMTZ8"/>
+        <DeviceSettingsType Name="MT1-Z8" ActuatorImage="MT1Z8" StageIDs="10" />
+        <DeviceSettingsType Name="CR1-Z7" ActuatorImage="CR1Z7" StageIDs="12" />
+        <DeviceSettingsType Name="PY004Z8 Yaw" ActuatorImage="PY004Z8" StageIDs="10,14" />
+        <DeviceSettingsType Name="PY004Z8 Pitch" ActuatorImage="PY004Z8" StageIDs="10,15" />
+        <DeviceSettingsType Name="PRMTZ8"  ActuatorImage="PRMTZ8" StageIDs="13" />
+        <DeviceSettingsType Name="PRMTZ8/M" ActuatorImage="PRMTZ8" Settings="PRMTZ8" StageIDs="13"/>
       </DeviceSettings>
     </DeviceType>
     <DeviceType ID="27" Name="KDC101">
       <DeviceSettings>
-        <DeviceSettingsType Name="GNL10-Z6" ActuatorImage="GNL10" Legacy="true"/>
-        <DeviceSettingsType Name="GNL18-Z6" ActuatorImage="GNL18" Legacy="true"/>
-        <DeviceSettingsType Name="MTS25" ActuatorImage="MTS25Z8" Legacy="true"/>
-        <DeviceSettingsType Name="MTS50" ActuatorImage="MTS50Z8" Legacy="true"/>
+        <DeviceSettingsType Name="GNL10-Z6" ActuatorImage="GNL10" Legacy="true" StageIDs="3" />
+        <DeviceSettingsType Name="GNL18-Z6" ActuatorImage="GNL18" Legacy="true" StageIDs="3" />
+        <DeviceSettingsType Name="MTS25" ActuatorImage="MTS25Z8" Legacy="true" StageIDs="7" />
+        <DeviceSettingsType Name="MTS50" ActuatorImage="MTS50Z8" Legacy="true" StageIDs="8" />
         <DeviceSettingsType Name="PRM1-Z7" ActuatorImage="PRM1Z7" Legacy="true"/>
-        <DeviceSettingsType Name="Z606(B)" ActuatorImage="Z606" Legacy="true"/>
-        <DeviceSettingsType Name="Z612(B)" ActuatorImage="Z612" Legacy="true"/>
-        <DeviceSettingsType Name="Z625(B)" ActuatorImage="Z625" Legacy="true"/>
-        <DeviceSettingsType Name="Z625(B)64:1" ActuatorImage="Z625" Legacy="true"/>
-        <DeviceSettingsType Name="T25X" ActuatorImage="T25X" Legacy="true"/>
-        <DeviceSettingsType Name="MGS80" ActuatorImage="MGS80" Legacy="true"/>
-        <DeviceSettingsType Name="MGS60" ActuatorImage="MGS60" Legacy="true"/>
-        <DeviceSettingsType Name="CR1-Z6" ActuatorImage="CR1Z6" Legacy="true"/>
+        <DeviceSettingsType Name="Z606(B)" ActuatorImage="Z606" Legacy="true" StageIDs="2" />
+        <DeviceSettingsType Name="Z612(B)" ActuatorImage="Z612" Legacy="true" StageIDs="3" />
+        <DeviceSettingsType Name="Z625(B)" ActuatorImage="Z625" Legacy="true" StageIDs="4" />
+        <DeviceSettingsType Name="Z625(B)64:1" ActuatorImage="Z625" Legacy="true" StageIDs="4" />
+        <DeviceSettingsType Name="T25X" ActuatorImage="T25X" Legacy="true" StageIDs="20"/>
+        <DeviceSettingsType Name="MGS80" ActuatorImage="MGS80" Legacy="true" StageIDs="19"/>
+        <DeviceSettingsType Name="MGS60" ActuatorImage="MGS60" Legacy="true" StageIDs="18"/>
+        <DeviceSettingsType Name="CR1-Z6" ActuatorImage="CR1Z6" Legacy="true" StageIDs="5"/>
 
          
-        <DeviceSettingsType Name="Z806" ActuatorImage="Z806" />
-        <DeviceSettingsType Name="Z806V" ActuatorImage="Z806V" Settings="Z806"/>
-        <DeviceSettingsType Name="Z812" ActuatorImage="Z812" />
-        <DeviceSettingsType Name="Z812V" ActuatorImage="Z812V" Settings="Z812" />
-        <DeviceSettingsType Name="Z812B" ActuatorImage="Z812B" Settings="Z812" />
-        <DeviceSettingsType Name="Z812BV" ActuatorImage="Z812BV" Settings="Z812" />
-        <DeviceSettingsType Name="Z825" ActuatorImage="Z825B" />
-        <DeviceSettingsType Name="Z825B" ActuatorImage="Z825B" Settings="Z825"/>
-        <DeviceSettingsType Name="Z825V"  ActuatorImage="Z825BV"/>
-        <DeviceSettingsType Name="GNL10-Z8" ActuatorImage="GNL10" />
-        <DeviceSettingsType Name="GNL10-Z8/M" ActuatorImage="GNL10M" Settings="GNL10-Z8"/>
-        <DeviceSettingsType Name="GNL18-Z8" ActuatorImage="GNL18" />
-        <DeviceSettingsType Name="GNL18-Z8/M" ActuatorImage="GNL18M" Settings="GNL18-Z8"/>
-        <DeviceSettingsType Name="PRM1-Z8"  ActuatorImage="PRM1Z8" />
-        <DeviceSettingsType Name="PRM1/M-Z8"  ActuatorImage="PRM1Z8" Settings="PRM1-Z8"/>
-        <DeviceSettingsType Name="MTS25-Z8" ActuatorImage="MTS25Z8" />
-        <DeviceSettingsType Name="MTS25/M-Z8" ActuatorImage="MTS25Z8" Settings="MTS25-Z8" />
-        <DeviceSettingsType Name="MTS50-Z8" ActuatorImage="MTS50Z8" />
-        <DeviceSettingsType Name="MTS50/M-Z8" ActuatorImage="MTS50Z8" Settings="MTS50-Z8" />
+        <DeviceSettingsType Name="Z806" ActuatorImage="Z806" StageIDs="11" />
+        <DeviceSettingsType Name="Z806V" ActuatorImage="Z806V" Settings="Z806" StageIDs="11" />
+        <DeviceSettingsType Name="Z812" ActuatorImage="Z812" StageIDs="10" />
+        <DeviceSettingsType Name="Z812V" ActuatorImage="Z812V" Settings="Z812" StageIDs="10" />
+        <DeviceSettingsType Name="Z812B" ActuatorImage="Z812B" Settings="Z812" StageIDs="10" />
+        <DeviceSettingsType Name="Z812BV" ActuatorImage="Z812BV" Settings="Z812" StageIDs="10" />
+        <DeviceSettingsType Name="Z825" ActuatorImage="Z825B" StageIDs="9" />
+        <DeviceSettingsType Name="Z825B" ActuatorImage="Z825B" Settings="Z825" StageIDs="9"/>
+        <DeviceSettingsType Name="Z825V"  ActuatorImage="Z825BV" StageIDs="9"/>
+        <DeviceSettingsType Name="GNL10-Z8" ActuatorImage="GNL10" StageIDs="10,16" />
+        <DeviceSettingsType Name="GNL10-Z8/M" ActuatorImage="GNL10M" Settings="GNL10-Z8" StageIDs="10,16"/>
+        <DeviceSettingsType Name="GNL18-Z8" ActuatorImage="GNL18" StageIDs="10,17" />
+        <DeviceSettingsType Name="GNL18-Z8/M" ActuatorImage="GNL18M" Settings="GNL18-Z8" StageIDs="10,17"/>
+        <DeviceSettingsType Name="PRM1-Z8"  ActuatorImage="PRM1Z8" StageIDs="6" />
+        <DeviceSettingsType Name="PRM1/M-Z8"  ActuatorImage="PRM1Z8" Settings="PRM1-Z8" StageIDs="6"/>
+        <DeviceSettingsType Name="MTS25-Z8" ActuatorImage="MTS25Z8" StageIDs="7" />
+        <DeviceSettingsType Name="MTS25/M-Z8" ActuatorImage="MTS25Z8" Settings="MTS25-Z8" StageIDs="7" />
+        <DeviceSettingsType Name="MTS50-Z8" ActuatorImage="MTS50Z8" StageIDs="8" />
+        <DeviceSettingsType Name="MTS50/M-Z8" ActuatorImage="MTS50Z8" Settings="MTS50-Z8" StageIDs="8" />
         <DeviceSettingsType Name="ZM1" />
-        <DeviceSettingsType Name="MT1-Z8" ActuatorImage="MT1Z8" />
-        <DeviceSettingsType Name="CR1-Z7" ActuatorImage="CR1Z7" />
-        <DeviceSettingsType Name="PY004Z8 Yaw" />
-        <DeviceSettingsType Name="PY004Z8 Pitch" />
-        <DeviceSettingsType Name="PRMTZ8"  ActuatorImage="PRMTZ8" />
-        <DeviceSettingsType Name="PRMTZ8/M"  ActuatorImage="PRMTZ8" Settings="PRMTZ8"/>
+        <DeviceSettingsType Name="MT1-Z8" ActuatorImage="MT1Z8" StageIDs="10" />
+        <DeviceSettingsType Name="CR1-Z7" ActuatorImage="CR1Z7" StageIDs="12" />
+        <DeviceSettingsType Name="PY004Z8 Yaw" ActuatorImage="PY004Z8" StageIDs="10,14" />
+        <DeviceSettingsType Name="PY004Z8 Pitch" ActuatorImage="PY004Z8" StageIDs="10,15" />
+        <DeviceSettingsType Name="PRMTZ8"  ActuatorImage="PRMTZ8" StageIDs="13" />
+        <DeviceSettingsType Name="PRMTZ8/M" ActuatorImage="PRMTZ8" Settings="PRMTZ8" StageIDs="13"/>
       </DeviceSettings>
     </DeviceType>
     <DeviceType ID="79" Name="BDC101">
@@ -500,10 +500,10 @@
     </DeviceType>
     <DeviceType ID="49" Name="Labjack">
       <DeviceSettings>
-        <DeviceSettingsType Name="MLJ050 Labjack" ActuatorImage="MLJ050" HardwareRevision="3" />
-        <DeviceSettingsType Name="MLJ050/M Labjack" ActuatorImage="MLJ050M" HardwareRevision="3" Settings="MLJ050 Labjack"/>
-        <DeviceSettingsType Name="MLJ150 Labjack" ActuatorImage="MLJ050" HardwareRevision="3" />
-        <DeviceSettingsType Name="MLJ150/M Labjack" ActuatorImage="MLJ050M" HardwareRevision="3" Settings="MLJ150 Labjack"/>
+        <DeviceSettingsType Name="MLJ050 Labjack" ActuatorImage="MLJ050" StageIDs="50" HardwareRevision="3" />
+        <DeviceSettingsType Name="MLJ050/M Labjack" ActuatorImage="MLJ050M" StageIDs="50" HardwareRevision="3" Settings="MLJ050 Labjack"/>
+        <DeviceSettingsType Name="MLJ150 Labjack" ActuatorImage="MLJ050" StageIDs="150" HardwareRevision="3" />
+        <DeviceSettingsType Name="MLJ150/M Labjack" ActuatorImage="MLJ050M" StageIDs="150" HardwareRevision="3" Settings="MLJ150 Labjack"/>
       </DeviceSettings>
     </DeviceType>
     <DeviceType ID="55" Name="Cage Rotator">
@@ -514,8 +514,8 @@
     </DeviceType>
     <DeviceType ID="24" Name="Vertical Stage">
       <DeviceSettings>
-        <DeviceSettingsType Name="KVS30" ActuatorImage="KVS30" HardwareRevision="3"/>
-        <DeviceSettingsType Name="KVS30/M" ActuatorImage="KVS30" HardwareRevision="3" Settings="KVS30"/>
+        <DeviceSettingsType Name="KVS30" ActuatorImage="KVS30" HardwareRevision="3" StageIDs="64"/>
+        <DeviceSettingsType Name="KVS30/M" ActuatorImage="KVS30" HardwareRevision="3" Settings="KVS30" StageIDs="65"/>
       </DeviceSettings>
     </DeviceType>
   </Devices>
@@ -8885,6 +8885,10 @@
       <StageID>99</StageID>
       <AxisID>2</AxisID>
       <EncoderFitted>false</EncoderFitted>
+      <Rotational>
+        <MovementMode>0</MovementMode>
+        <MovementDirection>0</MovementDirection>
+      </Rotational>
       <DCServo>
         <DCServo>1</DCServo>
         <DCProp>435</DCProp>
@@ -8895,41 +8899,41 @@
       <Potentiometer>
         <FPControls>true</FPControls>
         <PotZeroWnd>20</PotZeroWnd>
-        <PotVel1>0.5</PotVel1>
+        <PotVel1>0.2</PotVel1>
         <PotWnd1>50</PotWnd1>
-        <PotVel2>1.0</PotVel2>
+        <PotVel2>0.4</PotVel2>
         <PotWnd2>80</PotWnd2>
-        <PotVel3>2.0</PotVel3>
+        <PotVel3>1.0</PotVel3>
         <PotWnd3>100</PotWnd3>
-        <PotVel4>2.5</PotVel4>
+        <PotVel4>1.5</PotVel4>
       </Potentiometer>
       <Buttons>
         <ButtonMode>1</ButtonMode>
-        <ButtonPos1>1.0</ButtonPos1>
-        <ButtonPos2>5.0</ButtonPos2>
+        <ButtonPos1>0.5</ButtonPos1>
+        <ButtonPos2>2.0</ButtonPos2>
       </Buttons>
       <Home>
         <HomeDir>2</HomeDir>
         <HomeLimitSwitch>1</HomeLimitSwitch>
-        <HomeVel>1.0</HomeVel>
-        <HomeZeroOffset>7.6</HomeZeroOffset>
+        <HomeVel>0.5</HomeVel>
+        <HomeZeroOffset>3.722</HomeZeroOffset>
       </Home>
       <Jog>
         <JogMode>2</JogMode>
         <JogStepSize>0.1</JogStepSize>
         <JogMinVel>0.0</JogMinVel>
         <JogAccn>1</JogAccn>
-        <JogMaxVel>1</JogMaxVel>
+        <JogMaxVel>0.5</JogMaxVel>
         <JogStopMode>2</JogStopMode>
       </Jog>
       <Physical>
-        <Units>1</Units>
+        <Units>2</Units>
         <Pitch>1.0</Pitch>
         <StepsPerRev>512</StepsPerRev>
-        <GearboxRatio>67</GearboxRatio>
+        <GearboxRatio>134.4825</GearboxRatio>
         <DirSense>1</DirSense>
-        <MinPos>-5.1</MinPos>
-        <MaxPos>5.1</MaxPos>
+        <MinPos>-2.5</MinPos>
+        <MaxPos>2.5</MaxPos>
         <MaxAccn>1</MaxAccn>
         <MaxVel>1</MaxVel>
       </Physical>
@@ -8955,6 +8959,10 @@
       <StageID>99</StageID>
       <AxisID>2</AxisID>
       <EncoderFitted>false</EncoderFitted>
+      <Rotational>
+        <MovementMode>0</MovementMode>
+        <MovementDirection>0</MovementDirection>
+      </Rotational>
       <DCServo>
         <DCServo>1</DCServo>
         <DCProp>435</DCProp>
@@ -8981,8 +8989,8 @@
       <Home>
         <HomeDir>2</HomeDir>
         <HomeLimitSwitch>1</HomeLimitSwitch>
-        <HomeVel>1.0</HomeVel>
-        <HomeZeroOffset>8.2</HomeZeroOffset>
+        <HomeVel>0.5</HomeVel>
+        <HomeZeroOffset>7.238</HomeZeroOffset>
       </Home>
       <Jog>
         <JogMode>2</JogMode>
@@ -8993,13 +9001,13 @@
         <JogStopMode>2</JogStopMode>
       </Jog>
       <Physical>
-        <Units>1</Units>
+        <Units>2</Units>
         <Pitch>1.0</Pitch>
         <StepsPerRev>512</StepsPerRev>
-        <GearboxRatio>67</GearboxRatio>
+        <GearboxRatio>75.258</GearboxRatio>
         <DirSense>1</DirSense>
-        <MinPos>-5.1</MinPos>
-        <MaxPos>5.1</MaxPos>
+        <MinPos>-4.01</MinPos>
+        <MaxPos>4.01</MaxPos>
         <MaxAccn>1.0</MaxAccn>
         <MaxVel>1.0</MaxVel>
       </Physical>

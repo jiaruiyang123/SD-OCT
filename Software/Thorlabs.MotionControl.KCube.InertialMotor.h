@@ -46,7 +46,7 @@ extern "C"
 		FT_InvalidParameter = 0x06, ///<Invalid parameter.
 		FT_DeviceNotPresent = 0x07, ///<Device not present.
 		FT_IncorrectDevice = 0x08 ///<Incorrect device.
-	 } FT_Status;
+	} FT_Status;
 
 	/// <summary> Values that represent THORLABSDEVICE_API. </summary>
 	typedef enum MOT_MotorTypes
@@ -57,11 +57,11 @@ extern "C"
 		MOT_BrushlessMotor = 3,
 		MOT_CustomMotor = 100,
 	} MOT_MotorTypes;
-
+/// \endcond
 #pragma pack(1)
 
 	/// <summary> Values that represent KIM_Channels. </summary>
-	typedef enum KIM_Channels : unsigned short
+	typedef enum KIM_Channels : unsigned __int16
 	{
 		/// <summary> An enum constant representing the channel 1 option. </summary>
 		Channel1 = 1,
@@ -82,23 +82,14 @@ extern "C"
 		JogStep = 0x02,
 	} KIM_JogMode;
 
-	/// <summary> Values that represent KIM_ButtonsMode. </summary>
-	typedef enum KIM_ButtonsMode : unsigned __int16
-	{
-		/// <summary> An enum constant representing the jog option. </summary>
-		Jog = 0x01,
-		/// <summary> An enum constant representing the position option. </summary>
-		Position = 0x02,
-	} KIM_ButtonsMode;
-
-	/// <summary> Values that represent KIM_Direction. </summary>
-	typedef enum KIM_Direction : byte
+	/// <summary> Values that represent KIM_TravelDirection. </summary>
+	typedef enum KIM_TravelDirection : byte
 	{
 		/// <summary> An enum constant representing the forward option. </summary>
 		Forward = 0x01,
 		/// <summary> An enum constant representing the reverse option. </summary>
 		Reverse = 0x02,
-	} KIM_Direction;
+	} KIM_TravelDirection;
 
 	/// <summary> KIM Drive Operation Parameters. </summary>
 	typedef struct KIM_DriveOPParameters
@@ -111,33 +102,226 @@ extern "C"
 		__int32 _stepAcceleration;
 	} KIM_DriveOPParameters;
 
-	/// <summary> Tim jog parameters. </summary>
+	/// <summary> KIM jog parameters. </summary>
 	typedef struct KIM_JogParameters
 	{
 		/// <summary> The jog mode. </summary>
 		KIM_JogMode _jogMode;
-		/// <summary> Size of the jog step. </summary>
-		__int32 _jogStepSize;
+		/// <summary>	Size of the jog step. </summary>
+		__int32 _jogStepSizeFwd;
+		/// <summary>	The jog step size reverse. </summary>
+		__int32 _jogStepSizeRev;
 		/// <summary> The jog step rate. </summary>
 		__int32 _jogStepRate;
 		/// <summary> The jog step acceleration. </summary>
 		__int32 _jogStepAcceleration;
 	} KIM_JogParameters;
 
-	/// <summary> Tim button parameters. </summary>
-	typedef struct KIM_ButtonParameters
+	/// <summary>	Values that represent KIM fb signal modes. </summary>
+	typedef enum KIM_FBSignalMode : __int16
 	{
-		/// <summary> The button mode. </summary>
-		KIM_ButtonsMode _buttonMode;
-		/// <summary> The first position. </summary>
-		__int32 _position1;
-		/// <summary> The second position. </summary>
-		__int32 _position2;
-		/// <summary> The reserved fields. </summary>
-		__int16 _reserved[2];
-	} KIM_ButtonParameters;
+		/// <summary>	An enum constant representing the fb limit switch option. </summary>
+		FB_LimitSwitch = 0x01,
+		/// <summary>	An enum constant representing the fb encoder option. </summary>
+		FB_Encoder = 0x02,
+	} KIM_FBSignalMode;
 
-	/// <summary> Tim status. </summary>
+	/// <summary>	Values that represent KIM limit switch modes. </summary>
+	typedef enum KIM_LimitSwitchModes : __int16
+	{
+		/// <summary>	An enum constant representing the ignore option. </summary>
+		Ignore = 0x01,
+		/// <summary>	An enum constant representing the switch makes option. </summary>
+		SwitchMakes = 0x02,
+		/// <summary>	An enum constant representing the switch breaks option. </summary>
+		SwitchBreaks = 0x03,
+		/// <summary>	An enum constant representing the switch makes home only option. </summary>
+		SwitchMakes_HomeOnly = 0x04,
+		/// <summary>	An enum constant representing the switch breaks home only option. </summary>
+		SwitchBreaks_HomeOnly = 0x05,
+	} KIM_LimitSwitchModes;
+
+	/// <summary> Values that represent KIM_TravelDirection. </summary>
+	typedef enum KIM_DirectionSense : __int16
+	{
+		Dir_Disabled = 0x0,
+		/// <summary> An enum constant representing the forward option. </summary>
+		Dir_Forward = 0x01,
+		/// <summary> An enum constant representing the reverse option. </summary>
+		Dir_Reverse = 0x02,
+	} KIM_DirectionSense;
+
+	/// <summary>	Values that represent KIM trig modes. </summary>
+	typedef enum KIM_TrigModes : __int16
+	{
+		/// <summary>	An enum constant representing the trig disabled option. </summary>
+		Trig_Disabled = 0x00,
+		/// <summary>	An enum constant representing the trig in gpi option. </summary>
+		Trig_In_GPI = 0x01,
+		/// <summary>	An enum constant representing the trig in relative move option. </summary>
+		Trig_InRelativeMove = 0x02,
+		/// <summary>	An enum constant representing the trig in absolute move option. </summary>
+		Trig_InAbsoluteMove = 0x03,
+		/// <summary>	An enum constant representing the trig in reset count option. </summary>
+		Trig_InResetCount = 0x04,
+		/// <summary>	An enum constant representing the trig out gp 0 option. </summary>
+		Trig_Out_GP0 = 0x0A,
+		/// <summary>	An enum constant representing the trig out in motion option. </summary>
+		Trig_Out_InMotion = 0x0B,
+		/// <summary>	An enum constant representing the trig out at Maximum velocity option. </summary>
+		Trig_Out_AtMaxVelocity = 0x0C,
+
+		/// <summary>	An enum constant representing the trig out Position step Forward option. </summary>
+		Trig_Out_PosStepFwd = 0x0D,
+		/// <summary>	An enum constant representing the trig out Position step Reverse option. </summary>
+		Trig_Out_PosStepRev = 0x0E,
+		/// <summary>	An enum constant representing the trig out Position step both option. </summary>
+		Trig_Out_PosStepBoth = 0x0F,
+
+		/// <summary>	An enum constant representing the trig out at Forward limit option. </summary>
+		Trig_Out_AtFwdLimit = 0x10,
+		/// <summary>	An enum constant representing the trig out at Reverse limit option. </summary>
+		Trig_Out_AtRevLimit = 0x11,
+		/// <summary>	An enum constant representing the trig out at either limit option. </summary>
+		Trig_Out_AtEitherLimit = 0x12,
+	} KIM_TrigModes;
+
+	/// <summary>	Values that represent KIM trig polarities. </summary>
+	typedef enum KIM_TrigPolarities : __int16
+	{
+		/// <summary>	An enum constant representing the trig high option. </summary>
+		Trig_High = 0x01,
+		/// <summary>	An enum constant representing the trig low option. </summary>
+		Trig_Low = 0x02,
+	} KIM_TrigPolarities;
+
+	/// <summary>	Values that represent KIM joystic modes. </summary>
+	typedef enum KIM_JoysticModes : __int16
+	{
+		JS_Velocity = 0x01,
+		JS_Jog = 0x02,
+		JS_GotoPosition = 0x03,
+	} KIM_JoysticModes;
+
+	/// <summary> Values that represent channel enable modes. </summary>
+	typedef enum ChannelEnableModes : __int16
+	{
+		/// <summary>	An enum constant representing the none option. </summary>
+		None = 0x00,
+		/// <summary>	An enum constant representing the channel 1 only option. </summary>
+		Channel1Only = 0x01,
+		/// <summary>	An enum constant representing the channel 2 only option. </summary>
+		Channel2Only = 0x02,
+		/// <summary>	An enum constant representing the channel 3 only option. </summary>
+		Channel3Only = 0x03,
+		/// <summary>	An enum constant representing the channel 4 only option. </summary>
+		Channel4Only = 0x04,
+
+		/// <summary>	An enum constant representing the channels 1 and 2 option. </summary>
+		Channels1and2 = 0x05,
+		/// <summary>	An enum constant representing the channels 3 and 4 option. </summary>
+		Channels3and4 = 0x06,
+	} ChannelEnableModes;
+
+	/// <summary>	A KIM limit switch parameters. </summary>
+	struct KIM_LimitSwitchParameters
+	{
+		/// <summary>	The forward limit. </summary>
+		KIM_LimitSwitchModes _forwardLimit;
+		/// <summary>	The reverse limit. </summary>
+		KIM_LimitSwitchModes _reverseLimit;
+		/// <summary>	Identifier for the stage. </summary>
+		__int16 _stageID;
+	};
+
+	/// <summary>	A KIM home parameters. </summary>
+	struct KIM_HomeParameters
+	{
+		/// <summary>	The home direction. </summary>
+		KIM_TravelDirection _homeDirection;
+		/// <summary>	The home limit switch. </summary>
+		KIM_TravelDirection _homeLimitSwitch;
+		/// <summary>	The home step rate. </summary>
+		__int32 _homeStepRate;
+		/// <summary>	The home offset. </summary>
+		__int32 _homeOffset;
+	};
+
+	/// <summary>	A KIM mmi parameters a. </summary>
+	struct KIM_MMIParameters
+	{
+		/// <summary>	The joystick mode. </summary>
+		KIM_JoysticModes _joystickMode;
+		/// <summary>	The maximum step rate. </summary>
+		__int32 _maxStepRate;
+		/// <summary>	The direction sense. </summary>
+		KIM_DirectionSense _directionSense;
+		/// <summary>	The display intensity. </summary>
+		__int16 _displayIntensity;
+	};
+
+	/// <summary>	A KIM mmi parameters b. </summary>
+	struct KIM_MMIChannelParameters
+	{
+		/// <summary>	The first preset position. </summary>
+		__int32 _presetPos1;
+		/// <summary>	The second preset position. </summary>
+		__int32 _presetPos2;
+	};
+
+	/// <summary>	A KIM trig i/o configuration. </summary>
+	struct KIM_TrigIOConfig
+	{
+		/// <summary>	The first trig channel. </summary>
+		KIM_Channels _trigChannel1;
+		/// <summary>	The second trig channel. </summary>
+		KIM_Channels _trigChannel2;
+		/// <summary>	The trig 1 mode. </summary>
+		KIM_TrigModes _trig1Mode;
+		/// <summary>	The trig 1 polarity. </summary>
+		KIM_TrigPolarities _trig1Polarity;
+		/// <summary>	The trig 2 mode. </summary>
+		KIM_TrigModes _trig2Mode;
+		/// <summary>	The trig 2 polarity. </summary>
+		KIM_TrigPolarities _trig2Polarity;
+	};
+
+	/// <summary>	A KIM trig parameters parameters. </summary>
+	struct KIM_TrigParamsParameters
+	{
+		/// <summary>	The start position forward. </summary>
+		__int32 _startPosFwd;
+		/// <summary>	The interval forward. </summary>
+		__int32 _intervalFwd;
+		/// <summary>	Number of pulses forwards. </summary>
+		__int32 _numberOfPulsesFwd;
+		/// <summary>	The start position reverse. </summary>
+		__int32 _startPosRev;
+		/// <summary>	The interval reverse. </summary>
+		__int32 _intervalRev;
+		/// <summary>	Number of pulses reverses. </summary>
+		__int32 _numberOfPulsesRev;
+		/// <summary>	Width of the pulse. </summary>
+		__int32 _pulseWidth;
+		/// <summary>	Number of cycles. </summary>
+		__int32 _numberOfCycles;
+
+		/// <summary>	The reserved[ 6]. </summary>
+		__int16 _reserved[6];
+	};
+
+	/// <summary>	A KIM feedback signal parameters. </summary>
+	struct KIM_FeedbackSigParams
+	{
+		/// <summary>	The feedback signal mode. </summary>
+		KIM_FBSignalMode _feedbackSignalMode;
+		/// <summary>	The encoder constant. </summary>
+		__int32 _encoderConst;
+		/// <summary>	The reserved[ 4]. </summary>
+		__int16 _reserved[4];
+	};
+
+	/// <summary> KIM status. </summary>
 	typedef struct KIM_Status
 	{
 		/// <summary> The position. </summary>
@@ -148,7 +332,6 @@ extern "C"
 		unsigned __int32 _statusBits;
 	} KIM_Status;
 
-	/// \endcond
 
 #pragma pack()
 
@@ -412,6 +595,13 @@ extern "C"
     /// 		  \include CodeSnippet_connection1.cpp
 	KCUBEINERTIALMOTOR_API bool __cdecl KIM_LoadSettings(char const * serialNo);
 
+	/// <summary> Update device with named settings. </summary>
+	/// <param name="serialNo"> The device serial no. </param>
+	/// <param name="settingsName"> Name of settings stored away from device. </param>
+	/// <returns> <c>true</c> if successful, false if not. </returns>
+	///             \include CodeSnippet_connection1.cpp
+	KCUBEINERTIALMOTOR_API bool __cdecl KIM_LoadNamedSettings(char const * serialNo, char const *settingsName);
+
 	/// <summary> persist the devices current settings. </summary>
 	/// <param name="serialNo">	The device serial no. </param>
 	/// <returns> <c>true</c> if successful, false if not. </returns>
@@ -489,11 +679,17 @@ extern "C"
 	/// <seealso cref="KIM_GetNextMessage(char const * serialNo, WORD * messageType, WORD * messageID, DWORD *messageData)" />
 	KCUBEINERTIALMOTOR_API bool __cdecl KIM_WaitForMessage(char const * serialNo, WORD * messageType, WORD * messageID, DWORD *messageData);
 
-	/// <summary> Sets the current position to the Home position (Position = 0). </summary>
+	/// <summary> Home the device to a limit switch or reset to zero if no limit switches available. </summary>
 	/// <param name="serialNo"> The serial no. </param>
 	/// <param name="channel">  The channel. </param>
 	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
 	KCUBEINERTIALMOTOR_API short __cdecl KIM_Home(char const * serialNo, KIM_Channels channel);
+
+	/// <summary> Sets the current position to zero. </summary>
+	/// <param name="serialNo"> The serial no. </param>
+	/// <param name="channel">  The channel. </param>
+	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_ZeroPosition(char const * serialNo, KIM_Channels channel);
 
 	/// <summary> set the position. </summary>
 	/// <param name="serialNo"> The serial no. </param>
@@ -509,12 +705,19 @@ extern "C"
 	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
 	KCUBEINERTIALMOTOR_API short __cdecl KIM_MoveAbsolute(char const * serialNo, KIM_Channels channel, __int32 position);
 
+	/// <summary> Move relative. </summary>
+	/// <param name="serialNo">	The device serial no. </param>
+	/// <param name="channel">  The channel. </param>
+	/// <param name="stepSize"> The relative move step size. </param>
+	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_MoveRelative(char const * serialNo, KIM_Channels channel, __int32 stepSize);
+
 	/// <summary> Move jog. </summary>
 	/// <param name="serialNo">	The device serial no. </param>
 	/// <param name="channel">	    The channel. </param>
 	/// <param name="jogDirection"> The jog direction. </param>
 	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
-	KCUBEINERTIALMOTOR_API short __cdecl KIM_MoveJog(char const * serialNo, KIM_Channels channel, KIM_Direction jogDirection);
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_MoveJog(char const * serialNo, KIM_Channels channel, KIM_TravelDirection jogDirection);
 
 	/// <summary> Move stop. </summary>
 	/// <param name="serialNo">	The device serial no. </param>
@@ -526,6 +729,10 @@ extern "C"
 	/// <param name="serialNo"> The serial no. </param>
 	/// <param name="channel">	The channel. </param>
 	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_SetDriveOPParameters(char const * serialNo, KIM_Channels channel, __int16 maxVoltage, __int32 stepRate, __int32 stepAcceleration)" />
+	/// <seealso cref="KIM_GetDriveOPParameters(char const * serialNo, KIM_Channels channel, __int16 &maxVoltage, __int32 &stepRate, __int32 &stepAcceleration)" />
+	/// <seealso cref="KIM_SetDriveOPParametersStruct(char const * serialNo, KIM_Channels channel, KIM_DriveOPParameters &driveOPParameters)" />
+	/// <seealso cref="KIM_GetDriveOPParametersStruct(char const * serialNo, KIM_Channels channel, KIM_DriveOPParameters &driveOPParameters)" />
 	KCUBEINERTIALMOTOR_API short __cdecl KIM_RequestDriveOPParameters(char const * serialNo, KIM_Channels channel);
 
 	/// <summary> Sets the operation drive parameters. </summary>
@@ -535,15 +742,23 @@ extern "C"
 	/// <param name="stepRate">		    The step rate. </param>
 	/// <param name="stepAcceleration"> The step acceleration. </param>
 	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestDriveOPParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_GetDriveOPParameters(char const * serialNo, KIM_Channels channel, __int16 &maxVoltage, __int32 &stepRate, __int32 &stepAcceleration)" />
+	/// <seealso cref="KIM_SetDriveOPParametersStruct(char const * serialNo, KIM_Channels channel, KIM_DriveOPParameters &driveOPParameters)" />
+	/// <seealso cref="KIM_GetDriveOPParametersStruct(char const * serialNo, KIM_Channels channel, KIM_DriveOPParameters &driveOPParameters)" />
 	KCUBEINERTIALMOTOR_API short __cdecl KIM_SetDriveOPParameters(char const * serialNo, KIM_Channels channel, __int16 maxVoltage, __int32 stepRate, __int32 stepAcceleration);
 
 	/// <summary> Gets the operation drive parameters. </summary>
 	/// <param name="serialNo">	The device serial no. </param>
 	/// <param name="channel">		    The channel. </param>
-	/// <param name="maxVoltage">	    The maximum voltage. </param>
-	/// <param name="stepRate">		    The step rate. </param>
-	/// <param name="stepAcceleration"> The step acceleration. </param>
+	/// <param name="maxVoltage">	    [out] The maximum voltage. </param>
+	/// <param name="stepRate">		    [out] The step rate. </param>
+	/// <param name="stepAcceleration"> [out] The step acceleration. </param>
 	/// <returns> The operation drive parameters. </returns>
+	/// <seealso cref="KIM_RequestDriveOPParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_SetDriveOPParameters(char const * serialNo, KIM_Channels channel, __int16 maxVoltage, __int32 stepRate, __int32 stepAcceleration)" />
+	/// <seealso cref="KIM_SetDriveOPParametersStruct(char const * serialNo, KIM_Channels channel, KIM_DriveOPParameters &driveOPParameters)" />
+	/// <seealso cref="KIM_GetDriveOPParametersStruct(char const * serialNo, KIM_Channels channel, KIM_DriveOPParameters &driveOPParameters)" />
 	KCUBEINERTIALMOTOR_API short __cdecl KIM_GetDriveOPParameters(char const * serialNo, KIM_Channels channel, __int16 &maxVoltage, __int32 &stepRate, __int32 &stepAcceleration);
 
 	/// <summary> Sets the operation drive parameters. </summary>
@@ -551,6 +766,10 @@ extern "C"
 	/// <param name="channel">			 The channel. </param>
 	/// <param name="driveOPParameters"> Options for controlling the drive operation. </param>
 	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestDriveOPParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_SetDriveOPParameters(char const * serialNo, KIM_Channels channel, __int16 maxVoltage, __int32 stepRate, __int32 stepAcceleration)" />
+	/// <seealso cref="KIM_GetDriveOPParameters(char const * serialNo, KIM_Channels channel, __int16 &maxVoltage, __int32 &stepRate, __int32 &stepAcceleration)" />
+	/// <seealso cref="KIM_GetDriveOPParametersStruct(char const * serialNo, KIM_Channels channel, KIM_DriveOPParameters &driveOPParameters)" />
 	KCUBEINERTIALMOTOR_API short __cdecl KIM_SetDriveOPParametersStruct(char const * serialNo, KIM_Channels channel, KIM_DriveOPParameters &driveOPParameters);
 
 	/// <summary> Gets the operation drive parameters. </summary>
@@ -558,39 +777,61 @@ extern "C"
 	/// <param name="channel">			 The channel. </param>
 	/// <param name="driveOPParameters"> Options for controlling the drive operation. </param>
 	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestDriveOPParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_SetDriveOPParameters(char const * serialNo, KIM_Channels channel, __int16 maxVoltage, __int32 stepRate, __int32 stepAcceleration)" />
+	/// <seealso cref="KIM_GetDriveOPParameters(char const * serialNo, KIM_Channels channel, __int16 &maxVoltage, __int32 &stepRate, __int32 &stepAcceleration)" />
+	/// <seealso cref="KIM_SetDriveOPParametersStruct(char const * serialNo, KIM_Channels channel, KIM_DriveOPParameters &driveOPParameters)" />
 	KCUBEINERTIALMOTOR_API short __cdecl KIM_GetDriveOPParametersStruct(char const * serialNo, KIM_Channels channel, KIM_DriveOPParameters &driveOPParameters);
 
 	/// <summary> Requests the jog parameters. </summary>
 	/// <param name="serialNo"> The serial no. </param>
 	/// <param name="channel">	The channel. </param>
 	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_SetJogParameters(char const * serialNo, KIM_Channels channel, KIM_JogMode jogMode, __int32 jogStepSizeFwd, __int32 jogStepSizeRev, __int32 jogStepRate, __int32 jogStepAcceleration)" />
+	/// <seealso cref="KIM_GetJogParameters(char const * serialNo, KIM_Channels channel, KIM_JogMode &jogMode, __int32 &jogStepSizeFwd, __int32 &jogStepSizeRev, __int32 &jogStepRate, __int32 &jogStepAcceleration)" />
+	/// <seealso cref="KIM_SetJogParametersStruct(char const * serialNo, KIM_Channels channel, KIM_JogParameters &jogParameters)" />
+	/// <seealso cref="KIM_GetJogParametersStruct(char const * serialNo, KIM_Channels channel, KIM_JogParameters &jogParameters)" />
 	KCUBEINERTIALMOTOR_API short __cdecl KIM_RequestJogParameters(char const * serialNo, KIM_Channels channel);
 
-	/// <summary> Sets the jog parameters. </summary>
-	/// <param name="serialNo">	The device serial no. </param>
-	/// <param name="channel">			   The channel. </param>
-	/// <param name="jogMode">			   The jog mode. </param>
-	/// <param name="jogStepSize">		   Size of the jog step. </param>
-	/// <param name="jogStepRate">		   The jog step rate. </param>
-	/// <param name="jogStepAcceleration"> The jog step acceleration. </param>
-	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
-	KCUBEINERTIALMOTOR_API short __cdecl KIM_SetJogParameters(char const * serialNo, KIM_Channels channel, KIM_JogMode jogMode, __int32 jogStepSize, __int32 jogStepRate, __int32 jogStepAcceleration);
+	/// <summary>	Sets the jog parameters. </summary>
+	/// <param name="serialNo">			  	The device serial no. </param>
+	/// <param name="channel">			  	The channel. </param>
+	/// <param name="jogMode">			  	The jog mode. </param>
+	/// <param name="jogStepSizeFwd">	  	Size of the jog step. </param>
+	/// <param name="jogStepSizeRev">	  	The jog step size reverse. </param>
+	/// <param name="jogStepRate">		  	The jog step rate. </param>
+	/// <param name="jogStepAcceleration">	The jog step acceleration. </param>
+	/// <returns>	The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestJogParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_GetJogParameters(char const * serialNo, KIM_Channels channel, KIM_JogMode &jogMode, __int32 &jogStepSizeFwd, __int32 &jogStepSizeRev, __int32 &jogStepRate, __int32 &jogStepAcceleration)" />
+	/// <seealso cref="KIM_SetJogParametersStruct(char const * serialNo, KIM_Channels channel, KIM_JogParameters &jogParameters)" />
+	/// <seealso cref="KIM_GetJogParametersStruct(char const * serialNo, KIM_Channels channel, KIM_JogParameters &jogParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_SetJogParameters(char const * serialNo, KIM_Channels channel, KIM_JogMode jogMode, __int32 jogStepSizeFwd, __int32 jogStepSizeRev, __int32 jogStepRate, __int32 jogStepAcceleration);
 
-	/// <summary> Gets the jog parameters. </summary>
-	/// <param name="serialNo">	The device serial no. </param>
-	/// <param name="channel">			   The channel. </param>
-	/// <param name="jogMode">			   The jog mode. </param>
-	/// <param name="jogStepSize">		   Size of the jog step. </param>
-	/// <param name="jogStepRate">		   The jog step rate. </param>
-	/// <param name="jogStepAcceleration"> The jog step acceleration. </param>
-	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
-	KCUBEINERTIALMOTOR_API short __cdecl KIM_GetJogParameters(char const * serialNo, KIM_Channels channel, KIM_JogMode &jogMode, __int32 &jogStepSize, __int32 &jogStepRate, __int32 &jogStepAcceleration);
+	/// <summary>	Gets the jog parameters. </summary>
+	/// <param name="serialNo">			  	The device serial no. </param>
+	/// <param name="channel">			  	The channel. </param>
+	/// <param name="jogMode">			  	[out] The jog mode. </param>
+	/// <param name="jogStepSizeFwd">	  	[out] Size of the jog step. </param>
+	/// <param name="jogStepSizeRev">	  	[out] The jog step size reverse. </param>
+	/// <param name="jogStepRate">		  	[out] The jog step rate. </param>
+	/// <param name="jogStepAcceleration">	[out] The jog step acceleration. </param>
+	/// <returns>	The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestJogParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_SetJogParameters(char const * serialNo, KIM_Channels channel, KIM_JogMode jogMode, __int32 jogStepSizeFwd, __int32 jogStepSizeRev, __int32 jogStepRate, __int32 jogStepAcceleration)" />
+	/// <seealso cref="KIM_SetJogParametersStruct(char const * serialNo, KIM_Channels channel, KIM_JogParameters &jogParameters)" />
+	/// <seealso cref="KIM_GetJogParametersStruct(char const * serialNo, KIM_Channels channel, KIM_JogParameters &jogParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_GetJogParameters(char const * serialNo, KIM_Channels channel, KIM_JogMode &jogMode, __int32 &jogStepSizeFwd, __int32 &jogStepSizeRev, __int32 &jogStepRate, __int32 &jogStepAcceleration);
 
 	/// <summary> Sets the jog parameters. </summary>
 	/// <param name="serialNo">	The device serial no. </param>
 	/// <param name="channel">			 The channel. </param>
 	/// <param name="jogParameters"> Options for controlling the drive operation. </param>
 	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestJogParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_SetJogParameters(char const * serialNo, KIM_Channels channel, KIM_JogMode jogMode, __int32 jogStepSizeFwd, __int32 jogStepSizeRev, __int32 jogStepRate, __int32 jogStepAcceleration)" />
+	/// <seealso cref="KIM_GetJogParameters(char const * serialNo, KIM_Channels channel, KIM_JogMode &jogMode, __int32 &jogStepSizeFwd, __int32 &jogStepSizeRev, __int32 &jogStepRate, __int32 &jogStepAcceleration)" />
+	/// <seealso cref="KIM_GetJogParametersStruct(char const * serialNo, KIM_Channels channel, KIM_JogParameters &jogParameters)" />
 	KCUBEINERTIALMOTOR_API short __cdecl KIM_SetJogParametersStruct(char const * serialNo, KIM_Channels channel, KIM_JogParameters &jogParameters);
 
 	/// <summary> Gets the jog parameters. </summary>
@@ -598,83 +839,472 @@ extern "C"
 	/// <param name="channel">			 The channel. </param>
 	/// <param name="jogParameters"> Options for controlling the drive operation. </param>
 	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestJogParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_SetJogParameters(char const * serialNo, KIM_Channels channel, KIM_JogMode jogMode, __int32 jogStepSizeFwd, __int32 jogStepSizeRev, __int32 jogStepRate, __int32 jogStepAcceleration)" />
+	/// <seealso cref="KIM_GetJogParameters(char const * serialNo, KIM_Channels channel, KIM_JogMode &jogMode, __int32 &jogStepSizeFwd, __int32 &jogStepSizeRev, __int32 &jogStepRate, __int32 &jogStepAcceleration)" />
+	/// <seealso cref="KIM_SetJogParametersStruct(char const * serialNo, KIM_Channels channel, KIM_JogParameters &jogParameters)" />
 	KCUBEINERTIALMOTOR_API short __cdecl KIM_GetJogParametersStruct(char const * serialNo, KIM_Channels channel, KIM_JogParameters &jogParameters);
 
-	/// <summary> Requests the button parameters. </summary>
+	/// <summary>	Gets a limit switch parameters. </summary>
+	/// <param name="serialNo">	   	The serial no. </param>
+	/// <param name="channel">	   	The channel. </param>
+	/// <param name="forwardLimit">	[out] The forward limit switch configuration. </param>
+	/// <param name="reverseLimit">	[out] The reverse limit switch configuration. </param>
+	/// <param name="stageID">	   	[out] Identifier for the stage type. </param>
+	/// <returns>	The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestLimitSwitchParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_SetLimitSwitchParameters(char const * serialNo, KIM_Channels channel, KIM_LimitSwitchModes forwardLimit, KIM_LimitSwitchModes reverseLimit, __int16 stageID)" />
+	/// <seealso cref="KIM_GetLimitSwitchParametersStruct(char const * serialNo, KIM_Channels channel, KIM_LimitSwitchParameters& limitSwitchParameters)" />
+	/// <seealso cref="KIM_SetLimitSwitchParametersStruct(char const * serialNo, KIM_Channels channel, KIM_LimitSwitchParameters& limitSwitchParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_GetLimitSwitchParameters(char const * serialNo, KIM_Channels channel, KIM_LimitSwitchModes &forwardLimit, KIM_LimitSwitchModes &reverseLimit, __int16 &stageID);
+
+	/// <summary>	Sets the limit switch parameters. </summary>
+	/// <param name="serialNo">	   	The serial no. </param>
+	/// <param name="channel">	   	The channel. </param>
+	/// <param name="forwardLimit">	The forward limit switch configuration. </param>
+	/// <param name="reverseLimit">	The reverse limit switch configuration. </param>
+	/// <param name="stageID">	   	Identifier for the stage. </param>
+	/// <returns>	The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestLimitSwitchParameters(char const * serialNo, KIM_Channels channel)"/>
+	/// <seealso cref="KIM_GetLimitSwitchParameters(char const * serialNo, KIM_Channels channel, KIM_LimitSwitchModes &forwardLimit, KIM_LimitSwitchModes &reverseLimit, __int16 &stageID)"/>
+	/// <seealso cref="KIM_GetLimitSwitchParametersStruct(char const * serialNo, KIM_Channels channel, KIM_LimitSwitchParameters& limitSwitchParameters)"/>
+	/// <seealso cref="KIM_SetLimitSwitchParametersStruct(char const * serialNo, KIM_Channels channel, KIM_LimitSwitchParameters& limitSwitchParameters)"/>
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_SetLimitSwitchParameters(char const * serialNo, KIM_Channels channel, KIM_LimitSwitchModes forwardLimit, KIM_LimitSwitchModes reverseLimit, __int16 stageID);
+
+	/// <summary> Gets a limit switch parameters. </summary>
+	/// <param name="serialNo"> The serial no. </param>
+	/// <param name="channel">		    The channel. </param>
+	/// <param name="limitSwitchParameters"> Options for controlling the limit switches. </param>
+	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestLimitSwitchParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_SetLimitSwitchParameters(char const * serialNo, KIM_Channels channel, KIM_LimitSwitchModes forwardLimit, KIM_LimitSwitchModes reverseLimit, __int16 stageID)" />
+	/// <seealso cref="KIM_GetLimitSwitchParameters(char const * serialNo, KIM_Channels channel, KIM_LimitSwitchModes &forwardLimit, KIM_LimitSwitchModes &reverseLimit, __int16 &stageID)" />
+	/// <seealso cref="KIM_SetLimitSwitchParametersStruct(char const * serialNo, KIM_Channels channel, KIM_LimitSwitchParameters& limitSwitchParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_GetLimitSwitchParametersStruct(char const * serialNo, KIM_Channels channel, KIM_LimitSwitchParameters& limitSwitchParameters);
+
+	/// <summary> Sets the limit switch parameters. </summary>
+	/// <param name="serialNo"> The serial no. </param>
+	/// <param name="channel">		    The channel. </param>
+	/// <param name="limitSwitchParameters"> Options for controlling the limit switch. </param>
+	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestLimitSwitchParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_SetLimitSwitchParameters(char const * serialNo, KIM_Channels channel, KIM_LimitSwitchModes forwardLimit, KIM_LimitSwitchModes reverseLimit, __int16 stageID)" />
+	/// <seealso cref="KIM_GetLimitSwitchParameters(char const * serialNo, KIM_Channels channel, KIM_LimitSwitchModes &forwardLimit, KIM_LimitSwitchModes &reverseLimit, __int16 &stageID)" />
+	/// <seealso cref="KIM_GetLimitSwitchParametersStruct(char const * serialNo, KIM_Channels channel, KIM_LimitSwitchParameters& limitSwitchParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_SetLimitSwitchParametersStruct(char const * serialNo, KIM_Channels channel, KIM_LimitSwitchParameters& limitSwitchParameters);
+
+	/// <summary>	Request the limit switch parameters. </summary>
 	/// <param name="serialNo"> The serial no. </param>
 	/// <param name="channel">	The channel. </param>
-	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
-	KCUBEINERTIALMOTOR_API short __cdecl KIM_RequestButtonParameters(char const * serialNo, KIM_Channels channel);
+	/// <returns>	The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_SetLimitSwitchParameters(char const * serialNo, KIM_Channels channel, KIM_LimitSwitchModes forwardLimit, KIM_LimitSwitchModes reverseLimit, __int16 stageID)" />
+	/// <seealso cref="KIM_GetLimitSwitchParameters(char const * serialNo, KIM_Channels channel, KIM_LimitSwitchModes &forwardLimit, KIM_LimitSwitchModes &reverseLimit, __int16 &stageID)" />
+	/// <seealso cref="KIM_GetLimitSwitchParametersStruct(char const * serialNo, KIM_Channels channel, KIM_LimitSwitchParameters& limitSwitchParameters)" />
+	/// <seealso cref="KIM_SetLimitSwitchParametersStruct(char const * serialNo, KIM_Channels channel, KIM_LimitSwitchParameters& limitSwitchParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_RequestLimitSwitchParameters(char const * serialNo, KIM_Channels channel);
 
-	/// <summary> Sets a button parameters. </summary>
-	/// <param name="serialNo">	The device serial no. </param>
-	/// <param name="channel">    The channel. </param>
-	/// <param name="buttonMode"> The button mode. </param>
-	/// <param name="position1">  The first position. </param>
-	/// <param name="position2">  The second position. </param>
-	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
-	KCUBEINERTIALMOTOR_API short __cdecl KIM_SetButtonParameters(char const * serialNo, KIM_Channels channel, KIM_ButtonsMode buttonMode, __int32 position1, __int32 position2);
+	/// <summary>	Gets a home parameters. </summary>
+	/// <param name="serialNo">		  	The serial no. </param>
+	/// <param name="channel">		  	The channel. </param>
+	/// <param name="homeDirection">  	[out] The home direction. </param>
+	/// <param name="homeLimitSwitch">	[out] The home limit switch. </param>
+	/// <param name="homeStepRate">   	[out] The home step rate. </param>
+	/// <param name="homeOffset">	  	[out] The home offset. </param>
+	/// <returns>	The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestHomeParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_SetHomeParameters(char const * serialNo, KIM_Channels channel, KIM_TravelDirection homeDirection, KIM_TravelDirection homeLimitSwitch, __int32 homeStepRate, __int32 homeOffset)" />
+	/// <seealso cref="KIM_GetHomeParametersStruct(char const * serialNo, KIM_Channels channel, KIM_HomeParameters& homeParameters)" />
+	/// <seealso cref="KIM_SetHomeParametersStruct(char const * serialNo, KIM_Channels channel, KIM_HomeParameters& homeParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_GetHomeParameters(char const * serialNo, KIM_Channels channel, KIM_TravelDirection &homeDirection, KIM_TravelDirection &homeLimitSwitch, __int32 &homeStepRate, __int32 &homeOffset);
 
-	/// <summary> Gets a button parameters. </summary>
-	/// <param name="serialNo">	The device serial no. </param>
-	/// <param name="channel">    The channel. </param>
-	/// <param name="buttonMode"> The button mode. </param>
-	/// <param name="position1">  The first position. </param>
-	/// <param name="position2">  The second position. </param>
-	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
-	KCUBEINERTIALMOTOR_API short __cdecl KIM_GetButtonParameters(char const * serialNo, KIM_Channels channel, KIM_ButtonsMode &buttonMode, __int32 &position1, __int32 &position2);
+	/// <summary>	Sets the home parameters. </summary>
+	/// <param name="serialNo">		  	The serial no. </param>
+	/// <param name="channel">		  	The channel. </param>
+	/// <param name="homeDirection">  	Options for controlling the home. </param>
+	/// <param name="homeLimitSwitch">	The home limit switch. </param>
+	/// <param name="homeStepRate">   	The home step rate. </param>
+	/// <param name="homeOffset">	  	The home offset. </param>
+	/// <returns>	The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestHomeParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_GetHomeParameters(char const * serialNo, KIM_Channels channel, KIM_TravelDirection &homeDirection, KIM_TravelDirection &homeLimitSwitch, __int32 &homeStepRate, __int32 &homeOffset)" />
+	/// <seealso cref="KIM_GetHomeParametersStruct(char const * serialNo, KIM_Channels channel, KIM_HomeParameters& homeParameters)" />
+	/// <seealso cref="KIM_SetHomeParametersStruct(char const * serialNo, KIM_Channels channel, KIM_HomeParameters& homeParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_SetHomeParameters(char const * serialNo, KIM_Channels channel, KIM_TravelDirection homeDirection, KIM_TravelDirection homeLimitSwitch, __int32 homeStepRate, __int32 homeOffset);
 
-	/// <summary> Sets a button parameters. </summary>
-	/// <param name="serialNo">	The device serial no. </param>
+	/// <summary> Gets a home parameters. </summary>
+	/// <param name="serialNo"> The serial no. </param>
 	/// <param name="channel">		    The channel. </param>
-	/// <param name="buttonParameters"> Options for controlling the button. </param>
+	/// <param name="homeParameters"> Options for controlling the home. </param>
 	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
-	KCUBEINERTIALMOTOR_API short __cdecl KIM_SetButtonParametersStruct(char const * serialNo, KIM_Channels channel, KIM_ButtonParameters &buttonParameters);
+	/// <seealso cref="KIM_RequestHomeParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_SetHomeParameters(char const * serialNo, KIM_Channels channel, KIM_TravelDirection homeDirection, KIM_TravelDirection homeLimitSwitch, __int32 homeStepRate, __int32 homeOffset)" />
+	/// <seealso cref="KIM_GetHomeParameters(char const * serialNo, KIM_Channels channel, KIM_TravelDirection &homeDirection, KIM_TravelDirection &homeLimitSwitch, __int32 &homeStepRate, __int32 &homeOffset)" />
+	/// <seealso cref="KIM_SetHomeParametersStruct(char const * serialNo, KIM_Channels channel, KIM_HomeParameters& homeParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_GetHomeParametersStruct(char const * serialNo, KIM_Channels channel, KIM_HomeParameters& homeParameters);
 
-	/// <summary> Gets a button parameters. </summary>
-	/// <param name="serialNo">	The device serial no. </param>
+	/// <summary> Sets the home parameters. </summary>
+	/// <param name="serialNo"> The serial no. </param>
 	/// <param name="channel">		    The channel. </param>
-	/// <param name="buttonParameters"> Options for controlling the button. </param>
+	/// <param name="homeParameters"> Options for controlling the home. </param>
 	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
-	KCUBEINERTIALMOTOR_API short __cdecl KIM_GetButtonParametersStruct(char const * serialNo, KIM_Channels channel, KIM_ButtonParameters &buttonParameters);
+	/// <seealso cref="KIM_RequestHomeParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_SetHomeParameters(char const * serialNo, KIM_Channels channel, KIM_TravelDirection homeDirection, KIM_TravelDirection homeLimitSwitch, __int32 homeStepRate, __int32 homeOffset)" />
+	/// <seealso cref="KIM_GetHomeParameters(char const * serialNo, KIM_Channels channel, KIM_TravelDirection &homeDirection, KIM_TravelDirection &homeLimitSwitch, __int32 &homeStepRate, __int32 &homeOffset)" />
+	/// <seealso cref="KIM_GetHomeParametersStruct(char const * serialNo, KIM_Channels channel, KIM_HomeParameters& homeParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_SetHomeParametersStruct(char const * serialNo, KIM_Channels channel, KIM_HomeParameters& homeParameters);
 
-	/// <summary> Sets a maximum pot step rate. </summary>
-	/// <param name="serialNo">	The device serial no. </param>
-	/// <param name="channel">		  The channel. </param>
-	/// <param name="maxPotStepRate"> The maximum pot step rate. </param>
-	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
-	/// <seealso cref="KIM_RequestMaxPotStepRate(char const * serialNo, KIM_Channels channel)" />
-	/// <seealso cref="KIM_GetMaxPotStepRate(char const * serialNo, KIM_Channels channel)" />
-	KCUBEINERTIALMOTOR_API short __cdecl KIM_SetMaxPotStepRate(char const * serialNo, KIM_Channels channel, __int32 maxPotStepRate);
-
-	/// <summary> Requests the maximum potentiometer step rate. </summary>
+	/// <summary>	Request the home parameters. </summary>
 	/// <param name="serialNo"> The serial no. </param>
 	/// <param name="channel">	The channel. </param>
+	/// <returns>	The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_SetHomeParameters(char const * serialNo, KIM_Channels channel, KIM_TravelDirection homeDirection, KIM_TravelDirection homeLimitSwitch, __int32 homeStepRate, __int32 homeOffset)" />
+	/// <seealso cref="KIM_GetHomeParameters(char const * serialNo, KIM_Channels channel, KIM_TravelDirection &homeDirection, KIM_TravelDirection &homeLimitSwitch, __int32 &homeStepRate, __int32 &homeOffset)" />
+	/// <seealso cref="KIM_GetHomeParametersStruct(char const * serialNo, KIM_Channels channel, KIM_HomeParameters& homeParameters)" />
+	/// <seealso cref="KIM_SetHomeParametersStruct(char const * serialNo, KIM_Channels channel, KIM_HomeParameters& homeParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_RequestHomeParameters(char const * serialNo, KIM_Channels channel);
+
+	/// <summary>	Gets a mmi parameters. </summary>
+	/// <param name="serialNo">		   	The serial no. </param>
+	/// <param name="channel">		   	The channel. </param>
+	/// <param name="joystickMode">	   	[out] The joystick mode. </param>
+	/// <param name="maxStepRate">	   	[out] The maximum step rate. </param>
+	/// <param name="directionSense">  	[out] The direction sense. </param>
+	/// <param name="displayIntensity">	[out] The display intensity. </param>
+	/// <returns>	The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestMMIParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_SetMMIDeviceParameters(char const * serialNo, KIM_JoysticModes joystickMode, __int32 maxStepRate, KIM_DirectionSense directionSense, __int16 displayIntensity)" />
+	/// <seealso cref="KIM_GetMMIDeviceParametersStruct(char const * serialNo, KIM_Channels channel, KIM_MMIParameters& mmiParameters)" />
+	/// <seealso cref="KIM_SetMMIDeviceParametersStruct(char const * serialNo, KIM_Channels channel, KIM_MMIParameters& mmiParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_GetMMIDeviceParameters(char const * serialNo, KIM_Channels channel, KIM_JoysticModes &joystickMode, __int32 &maxStepRate, KIM_DirectionSense &directionSense, __int32 &presetPos1, __int32 &presetPos2, __int32 &displayIntensity);
+
+	/// <summary>	Gets a mmi parameters. </summary>
+	/// <param name="serialNo">		   	The serial no. </param>
+	/// <param name="channel">		   	The channel. </param>
+	/// <param name="presetPos1">	   	[out] The first preset position. </param>
+	/// <param name="presetPos2">	   	[out] The second preset position. </param>
+	/// <returns>	The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestMMIParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_SetMMIChannelParameters(char const * serialNo, KIM_Channels channel, __int32 presetPos1, __int32 presetPos2)" />
+	/// <seealso cref="KIM_GetMMIChannelParametersStruct(char const * serialNo, KIM_Channels channel, KIM_MMIChannelParameters& mmiParameters)" />
+	/// <seealso cref="KIM_SetMMIChannelParametersStruct(char const * serialNo, KIM_Channels channel, KIM_MMIChannelParameters& mmiParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_GetMMIChannelParameters(char const * serialNo, KIM_Channels channel, __int32 &presetPos1, __int32 &presetPos2);
+
+	/// <summary>	Sets the mmi parameters. </summary>
+	/// <param name="serialNo">		   	The serial no. </param>
+	/// <param name="joystickMode">	   	The joystick mode. </param>
+	/// <param name="maxStepRate">	   	The maximum step rate. </param>
+	/// <param name="directionSense">  	The direction sense. </param>
+	/// <param name="displayIntensity">	The display intensity. </param>
+	/// <returns>	The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestMMIParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_GetMMIDeviceParameters(char const * serialNo, KIM_JoysticModes &joystickMode, __int32 &maxStepRate, KIM_DirectionSense &directionSense, __int32 &displayIntensity)" />
+	/// <seealso cref="KIM_GetMMIDeviceParametersStruct(char const * serialNo, KIM_Channels channel, KIM_MMIParameters& mmiParameters)" />
+	/// <seealso cref="KIM_SetMMIDeviceParametersStruct(char const * serialNo, KIM_Channels channel, KIM_MMIParameters& mmiParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_SetMMIDeviceParameters(char const * serialNo, KIM_JoysticModes joystickMode, __int32 maxStepRate, KIM_DirectionSense directionSense, __int16 displayIntensity);
+
+	/// <summary>	Sets the mmi parameters. </summary>
+	/// <param name="serialNo">		   	The serial no. </param>
+	/// <param name="channel">		   	The channel. </param>
+	/// <param name="presetPos1">	   	The first preset position. </param>
+	/// <param name="presetPos2">	   	The second preset position. </param>
+	/// <returns>	The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestMMIParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_GetMMIChannelParameters(char const * serialNo, KIM_Channels channel, __int32 &presetPos1, __int32 &presetPos2)" />
+	/// <seealso cref="KIM_GetMMIChannelParametersStruct(char const * serialNo, KIM_Channels channel, KIM_MMIChannelParameters& mmiParameters)" />
+	/// <seealso cref="KIM_SetMMIChannelParametersStruct(char const * serialNo, KIM_Channels channel, KIM_MMIChannelParameters& mmiParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_SetMMIChannelParameters(char const * serialNo, KIM_Channels channel, __int32 presetPos1, __int32 presetPos2);
+
+	/// <summary> Gets a mmi parameters. </summary>
+	/// <param name="serialNo"> The serial no. </param>
+	/// <param name="mmiParameters"> Options for controlling the mmi. </param>
 	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
-	/// <seealso cref="KIM_GetMaxPotStepRate(char const * serialNo, KIM_Channels channel)" />
-	/// <seealso cref="KIM_SetMaxPotStepRate(char const * serialNo, KIM_Channels channel, __int32 maxPotStepRate)" />
-	KCUBEINERTIALMOTOR_API short __cdecl KIM_RequestMaxPotStepRate(char const * serialNo, KIM_Channels channel);
+	/// <seealso cref="KIM_RequestMMIParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_SetMMIParameters(char const * serialNo, KIM_Channels channel, KIM_JoysticModes joystickMode, __int32 maxStepRate, KIM_DirectionSense directionSense, __int32 presetPos1, __int32 presetPos2, __int16 displayIntensity)" />
+	/// <seealso cref="KIM_GetMMIParameters(char const * serialNo, KIM_Channels channel, KIM_JoysticModes &joystickMode, __int32 &maxStepRate, KIM_DirectionSense &directionSense, __int32 &presetPos1, __int32 &presetPos2, __int32 &displayIntensity)" />
+	/// <seealso cref="KIM_SetMMIParametersStruct(char const * serialNo, KIM_Channels channel, KIM_MMIParametersInternal& mmiParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_GetMMIDeviceParametersStruct(char const * serialNo, KIM_MMIParameters& mmiParameters);
 
-	/// <summary> Gets the maximum potentiometer step rate. </summary>
-	/// <param name="serialNo">	The device serial no. </param>
-	/// <param name="channel"> The channel. </param>
-	/// <returns> The maximum pot step rate or 0 if an error occured. </returns>
-	/// <seealso cref="KIM_RequestMaxPotStepRate(char const * serialNo, KIM_Channels channel)" />
-	/// <seealso cref="KIM_SetMaxPotStepRate(char const * serialNo, KIM_Channels channel, __int32 maxPotStepRate)" />
-	KCUBEINERTIALMOTOR_API __int32 __cdecl KIM_GetMaxPotStepRate(char const * serialNo, KIM_Channels channel);
-
-	/// <summary> Gets the LED brightness. </summary>
-	/// <param name="serialNo">	The device serial no. </param>
-	/// <returns> Intensity from 0 (off) to 255. </returns>
-	/// <seealso cref="KIM_SetLEDBrightness(char const * serialNo, short brightness)" />
-	KCUBEINERTIALMOTOR_API short __cdecl KIM_GetLEDBrightness(char const * serialNo);
-
-	/// <summary> Sets the LED brightness. </summary>
-	/// <param name="serialNo">	The device serial no. </param>
-	/// <param name="brightness"> Intensity from 0 (off) to 255. </param>
+	/// <summary> Gets a mmi parameters. </summary>
+	/// <param name="serialNo"> The serial no. </param>
+	/// <param name="channel">		    The channel. </param>
+	/// <param name="mmiParameters"> Options for controlling the mmi. </param>
 	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
-	/// <seealso cref="KIM_GetLEDBrightness(char const * serialNo)" />
-	KCUBEINERTIALMOTOR_API short __cdecl KIM_SetLEDBrightness(char const * serialNo, short brightness);
+	/// <seealso cref="KIM_RequestMMIParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_SetMMIParameters(char const * serialNo, KIM_Channels channel, KIM_JoysticModes joystickMode, __int32 maxStepRate, KIM_DirectionSense directionSense, __int32 presetPos1, __int32 presetPos2, __int16 displayIntensity)" />
+	/// <seealso cref="KIM_GetMMIParameters(char const * serialNo, KIM_Channels channel, KIM_JoysticModes &joystickMode, __int32 &maxStepRate, KIM_DirectionSense &directionSense, __int32 &presetPos1, __int32 &presetPos2, __int32 &displayIntensity)" />
+	/// <seealso cref="KIM_SetMMIParametersStruct(char const * serialNo, KIM_Channels channel, KIM_MMIParametersInternal& mmiParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_GetMMIChannelParametersStruct(char const * serialNo, KIM_Channels channel, KIM_MMIChannelParameters& mmiParameters);
+
+	/// <summary> Sets the mmi parameters. </summary>
+	/// <param name="serialNo"> The serial no. </param>
+	/// <param name="mmiParameters"> Options for controlling the mmi. </param>
+	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestMMIParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_SetMMIParameters(char const * serialNo, KIM_Channels channel, KIM_JoysticModes joystickMode, __int32 maxStepRate, KIM_DirectionSense directionSense, __int32 presetPos1, __int32 presetPos2, __int16 displayIntensity)" />
+	/// <seealso cref="KIM_GetMMIParameters(char const * serialNo, KIM_Channels channel, KIM_JoysticModes &joystickMode, __int32 &maxStepRate, KIM_DirectionSense &directionSense, __int32 &presetPos1, __int32 &presetPos2, __int32 &displayIntensity)" />
+	/// <seealso cref="KIM_GetMMIParametersStruct(char const * serialNo, KIM_Channels channel, KIM_MMIParametersInternal& mmiParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_SetMMIDeviceParametersStruct(char const * serialNo, KIM_MMIParameters& mmiParameters);
+
+	/// <summary> Sets the mmi parameters. </summary>
+	/// <param name="serialNo"> The serial no. </param>
+	/// <param name="channel">		    The channel. </param>
+	/// <param name="mmiParameters"> Options for controlling the mmi. </param>
+	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestMMIParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_SetMMIParameters(char const * serialNo, KIM_Channels channel, KIM_JoysticModes joystickMode, __int32 maxStepRate, KIM_DirectionSense directionSense, __int32 presetPos1, __int32 presetPos2, __int16 displayIntensity)" />
+	/// <seealso cref="KIM_GetMMIParameters(char const * serialNo, KIM_Channels channel, KIM_JoysticModes &joystickMode, __int32 &maxStepRate, KIM_DirectionSense &directionSense, __int32 &presetPos1, __int32 &presetPos2, __int32 &displayIntensity)" />
+	/// <seealso cref="KIM_GetMMIParametersStruct(char const * serialNo, KIM_Channels channel, KIM_MMIParametersInternal& mmiParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_SetMMIChannelParametersStruct(char const * serialNo, KIM_Channels channel, KIM_MMIChannelParameters& mmiParameters);
+
+	/// <summary>	Request the mmi parameters. </summary>
+	/// <param name="serialNo"> The serial no. </param>
+	/// <param name="channel">	The channel. </param>
+	/// <returns>	The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_SetMMIDeviceParameters(char const * serialNo, KIM_JoysticModes joystickMode, __int32 maxStepRate, KIM_DirectionSense directionSense, __int16 displayIntensity)" />
+	/// <seealso cref="KIM_GetMMIDeviceParameters(char const * serialNo, KIM_JoysticModes &joystickMode, __int32 &maxStepRate, KIM_DirectionSense &directionSense, __int32 &displayIntensity)" />
+	/// <seealso cref="KIM_GetMMIDeviceParametersStruct(char const * serialNo, KIM_MMIParameters& mmiParameters)" />
+	/// <seealso cref="KIM_SetMMIDeviceParametersStruct(char const * serialNo, KIM_MMIParameters& mmiParameters)" />
+	/// <seealso cref="KIM_SetMMIChannelParameters(char const * serialNo, KIM_Channels channel, __int32 presetPos1, __int32 presetPos2)" />
+	/// <seealso cref="KIM_GetMMIChannelParameters(char const * serialNo, KIM_Channels channel, __int32 &presetPos1, __int32 &presetPos2)" />
+	/// <seealso cref="KIM_GetMMIChannelParametersStruct(char const * serialNo, KIM_Channels channel, KIM_MMIChannelParameters& mmiParameters)" />
+	/// <seealso cref="KIM_SetMMIChannelParametersStruct(char const * serialNo, KIM_Channels channel, KIM_MMIChannelParameters& mmiParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_RequestMMIParameters(char const * serialNo, KIM_Channels channel);
+
+	/// <summary>	Gets a trig IO parameters. </summary>
+	/// <param name="serialNo">			The serial no. </param>
+	/// <param name="trig1Mode">		[out] The trig 1 mode. </param>
+	/// <param name="trig1Polarity">	[out] The trig 1 polarity. </param>
+	/// <param name="trigChannel1"> 	[out] The first trig channel. </param>
+	/// <param name="trig2Mode">		[out] The trig 2 mode. </param>
+	/// <param name="trig2Polarity">	[out] The trig 2 polarity. </param>
+	/// <param name="trigChannel2"> 	[out] The second trig channel. </param>
+	/// <returns>	The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestTrigIOParameters(char const * serialNo)" />
+	/// <seealso cref="KIM_SetTrigIOParameters(char const * serialNo, KIM_TrigModes trig1Mode, KIM_TrigPolarities trig1Polarity, KIM_Channels trigChannel1, KIM_TrigModes trig2Mode, KIM_TrigPolarities trig2Polarity, KIM_Channels trigChannel2)" />
+	/// <seealso cref="KIM_GetTrigIOParametersStruct(char const * serialNo, KIM_TrigIOConfig& trigIOParameters)" />
+	/// <seealso cref="KIM_SetTrigIOParametersStruct(char const * serialNo, KIM_TrigIOConfig& trigIOParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_GetTrigIOParameters(char const * serialNo, KIM_TrigModes & trig1Mode, KIM_TrigPolarities & trig1Polarity, KIM_Channels & trigChannel1, KIM_TrigModes & trig2Mode, KIM_TrigPolarities & trig2Polarity, KIM_Channels & trigChannel2);
+
+	/// <summary>	Sets the limit switch parameters. </summary>
+	/// <param name="serialNo">			The serial no. </param>
+	/// <param name="trig1Mode">		The trig 1 mode. </param>
+	/// <param name="trig1Polarity">	The trig 1 polarity. </param>
+	/// <param name="trigChannel1"> 	The first trig channel. </param>
+	/// <param name="trig2Mode">		The trig 2 mode. </param>
+	/// <param name="trig2Polarity">	The trig 2 polarity. </param>
+	/// <param name="trigChannel2"> 	The second trig channel. </param>
+	/// <returns>	The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestTrigIOParameters(char const * serialNo)" />
+	/// <seealso cref="KIM_GetTrigIOParameters(char const * serialNo, KIM_TrigModes & trig1Mode, KIM_TrigPolarities & trig1Polarity, __int16 & trigChannel1, KIM_TrigModes & trig2Mode, KIM_TrigPolarities & trig2Polarity, __int16 & trigChannel2)" />
+	/// <seealso cref="KIM_GetTrigIOParametersStruct(char const * serialNo, KIM_TrigIOConfig& trigIOParameters)" />
+	/// <seealso cref="KIM_SetTrigIOParametersStruct(char const * serialNo, KIM_TrigIOConfig& trigIOParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_SetTrigIOParameters(char const * serialNo, KIM_TrigModes trig1Mode, KIM_TrigPolarities trig1Polarity, KIM_Channels trigChannel1, KIM_TrigModes trig2Mode, KIM_TrigPolarities trig2Polarity, KIM_Channels trigChannel2);
+
+	/// <summary> Gets a trig IO parameters. </summary>
+	/// <param name="serialNo"> The serial no. </param>
+	/// <param name="trigIOParameters"> Options for controlling the trig IO. </param>
+	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestTrigIOParameters(char const * serialNo)" />
+	/// <seealso cref="KIM_SetTrigIOParameters(char const * serialNo, KIM_TrigModes trig1Mode, KIM_TrigPolarities trig1Polarity, KIM_Channels trigChannel1, KIM_TrigModes trig2Mode, KIM_TrigPolarities trig2Polarity, KIM_Channels trigChannel2)" />
+	/// <seealso cref="KIM_GetTrigIOParameters(char const * serialNo, KIM_TrigModes & trig1Mode, KIM_TrigPolarities & trig1Polarity, KIM_Channels & trigChannel1, KIM_TrigModes & trig2Mode, KIM_TrigPolarities & trig2Polarity, KIM_Channels & trigChannel2)" />
+	/// <seealso cref="KIM_SetTrigIOParametersStruct(char const * serialNo, KIM_TrigIOConfig& trigIOParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_GetTrigIOParametersStruct(char const * serialNo, KIM_TrigIOConfig& trigIOParameters);
+
+	/// <summary> Sets the limit switch parameters. </summary>
+	/// <param name="serialNo"> The serial no. </param>
+	/// <param name="trigIOParameters"> Options for controlling the trig IO. </param>
+	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestTrigIOParameters(char const * serialNo)" />
+	/// <seealso cref="KIM_SetTrigIOParameters(char const * serialNo, KIM_TrigModes trig1Mode, KIM_TrigPolarities trig1Polarity, KIM_Channels trigChannel1, KIM_TrigModes trig2Mode, KIM_TrigPolarities trig2Polarity, KIM_Channels trigChannel2)" />
+	/// <seealso cref="KIM_GetTrigIOParameters(char const * serialNo, KIM_TrigModes & trig1Mode, KIM_TrigPolarities & trig1Polarity, KIM_Channels & trigChannel1, KIM_TrigModes & trig2Mode, KIM_TrigPolarities & trig2Polarity, KIM_Channels & trigChannel2)" />
+	/// <seealso cref="KIM_GetTrigIOParametersStruct(char const * serialNo, KIM_TrigIOConfig& trigIOParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_SetTrigIOParametersStruct(char const * serialNo, KIM_TrigIOConfig& trigIOParameters);
+
+	/// <summary>	Request the trig IO parameters. </summary>
+	/// <param name="serialNo"> The serial no. </param>
+	/// <returns>	The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_SetTrigIOParameters(char const * serialNo, KIM_TrigModes trig1Mode, KIM_TrigPolarities trig1Polarity, KIM_Channels trigChannel1, KIM_TrigModes trig2Mode, KIM_TrigPolarities trig2Polarity, KIM_Channels trigChannel2)" />
+	/// <seealso cref="KIM_GetTrigIOParameters(char const * serialNo, KIM_TrigModes & trig1Mode, KIM_TrigPolarities & trig1Polarity, KIM_Channels & trigChannel1, KIM_TrigModes & trig2Mode, KIM_TrigPolarities & trig2Polarity, KIM_Channels & trigChannel2)" />
+	/// <seealso cref="KIM_GetTrigIOParametersStruct(char const * serialNo, KIM_TrigIOConfig& trigIOParameters)" />
+	/// <seealso cref="KIM_SetTrigIOParametersStruct(char const * serialNo, KIM_TrigIOConfig& trigIOParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_RequestTrigIOParameters(char const * serialNo);
+
+	/// <summary>	Gets a trigger parameters. </summary>
+	/// <param name="serialNo">				The serial no. </param>
+	/// <param name="channel">				The channel. </param>
+	/// <param name="startPosFwd">			[out] The start position forward. </param>
+	/// <param name="intervalFwd">			[out] The interval forward. </param>
+	/// <param name="numberOfPulsesFwd">	[out] Number of pulses forwards. </param>
+	/// <param name="startPosRev">			[out] The start position reverse. </param>
+	/// <param name="intervalRev">			[out] The interval reverse. </param>
+	/// <param name="numberOfPulsesRev">	[out] Number of pulses reverses. </param>
+	/// <param name="pulseWidth">			[out] Width of the pulse. </param>
+	/// <param name="numberOfCycles">   	[out] Number of cycles. </param>
+	/// <returns>	The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestTrigParamsParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_SetTrigParamsParameters(char const * serialNo, KIM_Channels channel, KIM_TrigParamsParameters& trigParameters, __int32 startPosFwd, __int32 intervalFwd, __int32 numberOfPulsesFwd, __int32 startPosRev, __int32 intervalRev, __int32 numberOfPulsesRev, __int32 pulseWidth, __int32 numberOfCycles)" />
+	/// <seealso cref="KIM_GetTrigParamsParametersStruct(char const * serialNo, KIM_Channels channel, KIM_TrigParamsParameters& trigParameters)" />
+	/// <seealso cref="KIM_SetTrigParamsParametersStruct(char const * serialNo, KIM_Channels channel, KIM_TrigParamsParameters& trigParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_GetTrigParamsParameters(char const * serialNo, KIM_Channels channel, __int32 & startPosFwd, __int32 & intervalFwd, __int32 & numberOfPulsesFwd, __int32 & startPosRev, __int32 & intervalRev, __int32 & numberOfPulsesRev, __int32 & pulseWidth, __int32 & numberOfCycles);
+
+	/// <summary>	Sets the trigger parameters. </summary>
+	/// <param name="serialNo">				The serial no. </param>
+	/// <param name="channel">				The channel. </param>
+	/// <param name="trigParameters">   	The start position forward. </param>
+	/// <param name="startPosFwd">			The start position forward. </param>
+	/// <param name="intervalFwd">			The interval forward. </param>
+	/// <param name="numberOfPulsesFwd">	Number of pulses forwards. </param>
+	/// <param name="startPosRev">			The start position reverse. </param>
+	/// <param name="intervalRev">			The interval reverse. </param>
+	/// <param name="numberOfPulsesRev">	Number of pulses reverses. </param>
+	/// <param name="pulseWidth">			Width of the pulse. </param>
+	/// <param name="numberOfCycles">   	Number of cycles. </param>
+	/// <returns>	The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestTrigParamsParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_GetTrigParamsParameters(char const * serialNo, KIM_Channels channel, __int32 & startPosFwd, __int32 & intervalFwd, __int32 & numberOfPulsesFwd, __int32 & startPosRev, __int32 & intervalRev, __int32 & numberOfPulsesRev, __int32 & pulseWidth, __int32 & numberOfCycles)" />
+	/// <seealso cref="KIM_GetTrigParamsParametersStruct(char const * serialNo, KIM_Channels channel, KIM_TrigParamsParameters& trigParameters)" />
+	/// <seealso cref="KIM_SetTrigParamsParametersStruct(char const * serialNo, KIM_Channels channel, KIM_TrigParamsParameters& trigParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_SetTrigParamsParameters(char const * serialNo, KIM_Channels channel, KIM_TrigParamsParameters& trigParameters, __int32 startPosFwd, __int32 intervalFwd, __int32 numberOfPulsesFwd, __int32 startPosRev, __int32 intervalRev, __int32 numberOfPulsesRev, __int32 pulseWidth, __int32 numberOfCycles);
+
+	/// <summary> Gets a trigger parameters. </summary>
+	/// <param name="serialNo"> The serial no. </param>
+	/// <param name="channel">		    The channel. </param>
+	/// <param name="trigParameters"> Options for controlling the trigger parameters. </param>
+	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestTrigParamsParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_SetTrigParamsParameters(char const * serialNo, KIM_Channels channel, KIM_TrigParamsParameters& trigParameters, __int32 startPosFwd, __int32 intervalFwd, __int32 numberOfPulsesFwd, __int32 startPosRev, __int32 intervalRev, __int32 numberOfPulsesRev, __int32 pulseWidth, __int32 numberOfCycles)" />
+	/// <seealso cref="KIM_GetTrigParamsParameters(char const * serialNo, KIM_Channels channel, __int32 & startPosFwd, __int32 & intervalFwd, __int32 & numberOfPulsesFwd, __int32 & startPosRev, __int32 & intervalRev, __int32 & numberOfPulsesRev, __int32 & pulseWidth, __int32 & numberOfCycles)" />
+	/// <seealso cref="KIM_SetTrigParamsParametersStruct(char const * serialNo, KIM_Channels channel, KIM_TrigParamsParameters& trigParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_GetTrigParamsParametersStruct(char const * serialNo, KIM_Channels channel, KIM_TrigParamsParameters& trigParameters);
+
+	/// <summary> Sets the trigger parameters. </summary>
+	/// <param name="serialNo"> The serial no. </param>
+	/// <param name="channel">		    The channel. </param>
+	/// <param name="trigParameters"> Options for controlling the trigger parameters. </param>
+	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestTrigParamsParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_SetTrigParamsParameters(char const * serialNo, KIM_Channels channel, KIM_TrigParamsParameters& trigParameters, __int32 startPosFwd, __int32 intervalFwd, __int32 numberOfPulsesFwd, __int32 startPosRev, __int32 intervalRev, __int32 numberOfPulsesRev, __int32 pulseWidth, __int32 numberOfCycles)" />
+	/// <seealso cref="KIM_GetTrigParamsParameters(char const * serialNo, KIM_Channels channel, __int32 & startPosFwd, __int32 & intervalFwd, __int32 & numberOfPulsesFwd, __int32 & startPosRev, __int32 & intervalRev, __int32 & numberOfPulsesRev, __int32 & pulseWidth, __int32 & numberOfCycles)" />
+	/// <seealso cref="KIM_GetTrigParamsParametersStruct(char const * serialNo, KIM_Channels channel, KIM_TrigParamsParameters& trigParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_SetTrigParamsParametersStruct(char const * serialNo, KIM_Channels channel, KIM_TrigParamsParameters& trigParameters);
+
+	/// <summary>	Request the trigger parameters. </summary>
+	/// <param name="serialNo"> The serial no. </param>
+	/// <param name="channel">	The channel. </param>
+	/// <returns>	The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_SetTrigParamsParameters(char const * serialNo, KIM_Channels channel, KIM_TrigParamsParameters& trigParameters, __int32 startPosFwd, __int32 intervalFwd, __int32 numberOfPulsesFwd, __int32 startPosRev, __int32 intervalRev, __int32 numberOfPulsesRev, __int32 pulseWidth, __int32 numberOfCycles)" />
+	/// <seealso cref="KIM_GetTrigParamsParameters(char const * serialNo, KIM_Channels channel, __int32 & startPosFwd, __int32 & intervalFwd, __int32 & numberOfPulsesFwd, __int32 & startPosRev, __int32 & intervalRev, __int32 & numberOfPulsesRev, __int32 & pulseWidth, __int32 & numberOfCycles)" />
+	/// <seealso cref="KIM_GetTrigParamsParametersStruct(char const * serialNo, KIM_Channels channel, KIM_TrigParamsParameters& trigParameters)" />
+	/// <seealso cref="KIM_SetTrigParamsParametersStruct(char const * serialNo, KIM_Channels channel, KIM_TrigParamsParameters& trigParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_RequestTrigParamsParameters(char const * serialNo, KIM_Channels channel);
+
+	/// <summary>	Gets a feedback signal parameters. </summary>
+	/// <param name="serialNo">			 	The serial no. </param>
+	/// <param name="channel">			 	The channel. </param>
+	/// <param name="feedbackSignalMode">	[out] The feedback signal mode. </param>
+	/// <param name="encoderConst">		 	[out] The encoder constant. </param>
+	/// <returns>	The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestFeedbackSigParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_SetFeedbackSigParameters(char const * serialNo, KIM_Channels channel, KIM_FBSignalMode feedbackSignalMode, __int32 encoderConst)" />
+	/// <seealso cref="KIM_SetFeedbackSigParametersStruct(char const * serialNo, KIM_Channels channel, KIM_FeedbackSigParams& fbSigParameters)" />
+	/// <seealso cref="KIM_GetFeedbackSigParametersStruct(char const * serialNo, KIM_Channels channel, KIM_FeedbackSigParams& fbSigParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_GetFeedbackSigParameters(char const * serialNo, KIM_Channels channel, KIM_FBSignalMode & feedbackSignalMode, __int32 & encoderConst);
+
+	/// <summary>	Sets the feedback signal parameters. </summary>
+	/// <param name="serialNo">			 	The serial no. </param>
+	/// <param name="channel">			 	The channel. </param>
+	/// <param name="feedbackSignalMode">	The feedback signal mode. </param>
+	/// <param name="encoderConst">		 	The encoder constant. </param>
+	/// <returns>	The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestFeedbackSigParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_GetFeedbackSigParameters(char const * serialNo, KIM_Channels channel, KIM_FBSignalMode & feedbackSignalMode, __int32 & encoderConst)" />
+	/// <seealso cref="KIM_SetFeedbackSigParametersStruct(char const * serialNo, KIM_Channels channel, KIM_FeedbackSigParams& fbSigParameters)" />
+	/// <seealso cref="KIM_GetFeedbackSigParametersStruct(char const * serialNo, KIM_Channels channel, KIM_FeedbackSigParams& fbSigParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_SetFeedbackSigParameters(char const * serialNo, KIM_Channels channel, KIM_FBSignalMode feedbackSignalMode, __int32 encoderConst);
+
+	/// <summary> Gets a feedback signal parameters. </summary>
+	/// <param name="serialNo"> The serial no. </param>
+	/// <param name="channel">		    The channel. </param>
+	/// <param name="fbSigParameters"> Options for controlling the feedback signal. </param>
+	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestFeedbackSigParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_SetFeedbackSigParameters(char const * serialNo, KIM_Channels channel, KIM_FBSignalMode feedbackSignalMode, __int32 encoderConst)" />
+	/// <seealso cref="KIM_GetFeedbackSigParameters(char const * serialNo, KIM_Channels channel, KIM_FBSignalMode & feedbackSignalMode, __int32 & encoderConst)" />
+	/// <seealso cref="KIM_SetFeedbackSigParametersStruct(char const * serialNo, KIM_Channels channel, KIM_FeedbackSigParams& fbSigParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_GetFeedbackSigParametersStruct(char const * serialNo, KIM_Channels channel, KIM_FeedbackSigParams& fbSigParameters);
+
+	/// <summary> Sets the feedback signal parameters. </summary>
+	/// <param name="serialNo"> The serial no. </param>
+	/// <param name="channel">		    The channel. </param>
+	/// <param name="fbSigParameters"> Options for controlling the feedback signal. </param>
+	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestFeedbackSigParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_SetFeedbackSigParameters(char const * serialNo, KIM_Channels channel, KIM_FBSignalMode feedbackSignalMode, __int32 encoderConst)" />
+	/// <seealso cref="KIM_GetFeedbackSigParameters(char const * serialNo, KIM_Channels channel, KIM_FBSignalMode & feedbackSignalMode, __int32 & encoderConst)" />
+	/// <seealso cref="KIM_GetFeedbackSigParametersStruct(char const * serialNo, KIM_Channels channel, KIM_FeedbackSigParams& fbSigParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_SetFeedbackSigParametersStruct(char const * serialNo, KIM_Channels channel, KIM_FeedbackSigParams& fbSigParameters);
+
+	/// <summary>	Request the feedback signal parameters. </summary>
+	/// <param name="serialNo"> The serial no. </param>
+	/// <param name="channel">	The channel. </param>
+	/// <returns>	The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_SetFeedbackSigParameters(char const * serialNo, KIM_Channels channel, KIM_FBSignalMode feedbackSignalMode, __int32 encoderConst)" />
+	/// <seealso cref="KIM_GetFeedbackSigParameters(char const * serialNo, KIM_Channels channel, KIM_FBSignalMode & feedbackSignalMode, __int32 & encoderConst)" />
+	/// <seealso cref="KIM_SetFeedbackSigParametersStruct(char const * serialNo, KIM_Channels channel, KIM_FeedbackSigParams& fbSigParameters)" />
+	/// <seealso cref="KIM_GetFeedbackSigParametersStruct(char const * serialNo, KIM_Channels channel, KIM_FeedbackSigParams& fbSigParameters)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_RequestFeedbackSigParameters(char const * serialNo, KIM_Channels channel);
+
+	/// <summary> Gets a relative move parameters. </summary>
+	/// <param name="serialNo"> The serial no. </param>
+	/// <param name="channel">		    The channel. </param>
+	/// <param name="relativeMoveStep"> Options for controlling the relative move. </param>
+	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestRelativeMoveParameter(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_SetRelativeMoveParameter(char const * serialNo, KIM_Channels channel, __int32& relativeMove)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_GetRelativeMoveParameter(char const * serialNo, KIM_Channels channel, __int32& relativeMoveStep);
+
+	/// <summary> Sets the relative move parameters. </summary>
+	/// <param name="serialNo"> The serial no. </param>
+	/// <param name="channel">		    The channel. </param>
+	/// <param name="relativeMove"> Options for controlling the relative move. </param>
+	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestRelativeMoveParameter(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_GetRelativeMoveParameter(char const * serialNo, KIM_Channels channel, __int32& relativeMoveStep)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_SetRelativeMoveParameter(char const * serialNo, KIM_Channels channel, __int32& relativeMove);
+
+	/// <summary>	Request the relative move parameters. </summary>
+	/// <param name="serialNo"> The serial no. </param>
+	/// <param name="channel">	The channel. </param>
+	/// <returns>	The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_SetRelativeMoveParameter(char const * serialNo, KIM_Channels channel, __int32& relativeMove)" />
+	/// <seealso cref="KIM_GetRelativeMoveParameter(char const * serialNo, KIM_Channels channel, __int32& relativeMoveStep)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_RequestRelativeMoveParameter(char const * serialNo, KIM_Channels channel);
+
+	/// <summary> Gets a absolute move parameters. </summary>
+	/// <param name="serialNo"> The serial no. </param>
+	/// <param name="channel">		    The channel. </param>
+	/// <param name="absoluteMove"> Options for controlling the absolute move. </param>
+	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestAbsoluteMoveParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_SetAbsoluteMoveParameters(char const * serialNo, KIM_Channels channel, __int32& absoluteMove)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_GetAbsoluteMoveParameters(char const * serialNo, KIM_Channels channel, __int32& absoluteMove);
+
+	/// <summary> Sets the absolute move parameters. </summary>
+	/// <param name="serialNo"> The serial no. </param>
+	/// <param name="channel">		    The channel. </param>
+	/// <param name="absoluteMove"> Options for controlling the absolute move. </param>
+	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_RequestAbsoluteMoveParameters(char const * serialNo, KIM_Channels channel)" />
+	/// <seealso cref="KIM_GetAbsoluteMoveParameters(char const * serialNo, KIM_Channels channel, __int32& absoluteMove)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_SetAbsoluteMoveParameters(char const * serialNo, KIM_Channels channel, __int32& absoluteMove);
+
+	/// <summary>	Request the absolute move parameters. </summary>
+	/// <param name="serialNo"> The serial no. </param>
+	/// <param name="channel">	The channel. </param>
+	/// <returns>	The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_SetAbsoluteMoveParameters(char const * serialNo, KIM_Channels channel, __int32& absoluteMove)" />
+	/// <seealso cref="KIM_GetAbsoluteMoveParameters(char const * serialNo, KIM_Channels channel, __int32& absoluteMove)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_RequestAbsoluteMoveParameters(char const * serialNo, KIM_Channels channel);
 
 	/// <summary> Requests the state quantities (actual temperature, current and status bits). </summary>
 	/// <remarks> This needs to be called to get the device to send it's current status.<br />
@@ -719,6 +1349,19 @@ extern "C"
 	/// <param name="channel">  The channel. </param>
 	/// <returns> . </returns>
 	KCUBEINERTIALMOTOR_API DWORD __cdecl KIM_GetStatusBits(char const * serialNo, KIM_Channels channel);
+
+	/// <summary> Gets the Dual Channel Mode state. </summary>
+	/// <param name="serialNo">	The device serial no. </param>
+	/// <returns> True if the device is being used in Dual Channel Mode otherwise false. </returns>
+	/// <seealso cref="KIM_SetDualChannelMode(char const * serialNo, bool enableDualChannel)" />
+	KCUBEINERTIALMOTOR_API bool __cdecl KIM_IsDualChannelMode(char const * serialNo);
+
+	/// <summary> Sets the Dual Channel Mode. </summary>
+	/// <param name="serialNo">	The device serial no. </param>
+	/// <param name="enableDualChannel"> The dual channel mode state. </param>
+	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
+	/// <seealso cref="KIM_IsDualChannelMode(char const * serialNo)" />
+	KCUBEINERTIALMOTOR_API short __cdecl KIM_SetDualChannelMode(char const * serialNo, bool enableDualChannel);
 
 	/// <summary> Starts the internal polling loop which continuously requests position and status. </summary>
 	/// <param name="serialNo"> The device serial no. </param>

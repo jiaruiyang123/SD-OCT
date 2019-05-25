@@ -59,35 +59,35 @@ extern "C"
 	} MOT_MotorTypes;
 
 	/// <summary> Values that represent Joystick Direction Sense. </summary>
-	typedef enum KPZ_JoystickDirectionSense : __int16
+	typedef enum KPZ_WheelDirectionSense : __int16
 	{
 		/// <summary> An enum constant representing the kmot js positive option. </summary>
-		KPZ_JS_Positive = 0x01,
+		KPZ_WM_Positive = 0x01,
 		/// <summary> An enum constant representing the kmot js negative option. </summary>
-		KPZ_JS_Negative = 0x02,
-	} KPZ_JoystickDirectionSense;
+		KPZ_WM_Negative = 0x02,
+	} KPZ_WheelDirectionSense;
 
 	/// <summary> Values that represent Joystick Mode. </summary>
-	typedef enum KPZ_JoyStickMode : __int16
+	typedef enum KPZ_WheelMode : __int16
 	{
 		/// <summary> An enum constant representing the kmot js voltage option. </summary>
-		KPZ_JS_MoveAtVoltage = 0x01,
+		KPZ_WM_MoveAtVoltage = 0x01,
 		/// <summary> An enum constant representing the kmot js jog option. </summary>
-		KPZ_JS_JogVoltage = 0x02,
+		KPZ_WM_JogVoltage = 0x02,
 		/// <summary> An enum constant representing the kmot js move absolute option. </summary>
-		KPZ_JS_SetVoltage = 0x03,
-	} KPZ_JoyStickMode;
+		KPZ_WM_SetVoltage = 0x03,
+	} KPZ_WheelMode;
 
-	/// <summary> Values that represent KPZ_JoyStickChangeRate. </summary>
-	typedef enum KPZ_JoyStickChangeRate : __int16
+	/// <summary> Values that represent KPZ_WheelChangeRate. </summary>
+	typedef enum KPZ_WheelChangeRate : __int16
 	{
 		/// <summary> An enum constant representing the kmot js high option. </summary>
-		KPZ_JS_High = 0x01,
+		KPZ_WM_High = 0x01,
 		/// <summary> An enum constant representing the kmot js medium option. </summary>
-		KPZ_JS_Medium = 0x02,
+		KPZ_WM_Medium = 0x02,
 		/// <summary> An enum constant representing the kmot js low option. </summary>
-		KPZ_JS_Low = 0x03,
-	} KPZ_JoyStickChangeRate;
+		KPZ_WM_Low = 0x03,
+	} KPZ_WheelChangeRate;
 
 	/// <summary> Values that represent Trigger Port Mode. </summary>
 	typedef enum KPZ_TriggerPortMode : __int16
@@ -266,22 +266,22 @@ extern "C"
 	/// <value> Device GUI parameters. </value>
 	typedef struct KPZ_MMIParams
 	{
-		/// <summary> The joystick mode. </summary>
-		/// <remarks> The joystick mode is one of the following:
+		/// <summary> The wheel mode. </summary>
+		/// <remarks> The wheel mode is one of the following:
 		/// 		  <list type=table>
-		///				<item><term>1</term><term>Constant Voltage Adjust<br />The device will continue adjusting until the limits are reached or the duration of the joystick action</term></item>
-		///				<item><term>2</term><term>Jog<br />The device will jog forward or backward according to the joystick action.<br />
+		///				<item><term>1</term><term>Constant Voltage Adjust<br />The device will continue adjusting until the limits are reached or the duration of the wheel action</term></item>
+		///				<item><term>2</term><term>Jog<br />The device will jog forward or backward according to the wheel action.<br />
 		///					  The device will jog according to the Voltage Step</term></item>
-		///				<item><term>3</term><term>Move Absolute<br />The device will move to either Preset Po 1 or 2 according to the joystick action.</term></item>
+		///				<item><term>3</term><term>Move Absolute<br />The device will move to either Preset Po 1 or 2 according to the wheel action.</term></item>
 		/// 		  </list>
 		/// 		  </remarks>
-		KPZ_JoyStickMode JoystickMode;
+		KPZ_WheelMode JoystickMode;
 		/// <summary> The voltage adjust rate. </summary>
-		KPZ_JoyStickChangeRate VoltageAdjustRate; 
-		/// <summary> The joystick jog step size. </summary>
+		KPZ_WheelChangeRate VoltageAdjustRate; 
+		/// <summary> The wheel jog step size. </summary>
 		__int32 VoltageStep; 
-		/// <summary> The joystick direction sense. </summary>
-		KPZ_JoystickDirectionSense JoystickDirectionSense;
+		/// <summary> The wheel direction sense. </summary>
+		KPZ_WheelDirectionSense JoystickDirectionSense;
 		/// <summary> The first preset position in encoder counts. </summary>
 		__int32 PresetPos1; 
 		/// <summary> The second preset position in encoder counts. </summary>
@@ -541,6 +541,13 @@ extern "C"
 	/// <returns> <c>true</c> if successful, false if not. </returns>
     /// 		  \include CodeSnippet_connection1.cpp
 	KCUBEPIEZO_API bool __cdecl PCC_LoadSettings(char const * serialNo);
+
+	/// <summary> Update device with named settings. </summary>
+	/// <param name="serialNo"> The device serial no. </param>
+	/// <param name="settingsName"> Name of settings stored away from device. </param>
+	/// <returns> <c>true</c> if successful, false if not. </returns>
+	///             \include CodeSnippet_connection1.cpp
+	KCUBEPIEZO_API bool __cdecl PCC_LoadNamedSettings(char const * serialNo, char const *settingsName);
 
 	/// <summary> persist the devices current settings. </summary>
 	/// <param name="serialNo">	The device serial no. </param>
@@ -1031,22 +1038,22 @@ extern "C"
 
 	/// <summary> Get the MMI Parameters for the KCube Display Interface. </summary>
 	/// <param name="serialNo"> The device serial no. </param>
-	/// <param name="joystickMode">	The device joystick mode.
+	/// <param name="wheelMode">	The device wheel mode.
 	/// 					<list type=table>
-	///							<item><term>1</term><term>Constant Voltage Rate<br />The device will continue moving until the end stop is reached or the duration of the joystick action</term></item>
-	///							<item><term>2</term><term>Jog<br />The device will jog forward or backward according to the joystick action.<br />
+	///							<item><term>1</term><term>Constant Voltage Rate<br />The device will continue moving until the end stop is reached or the duration of the wheel action</term></item>
+	///							<item><term>2</term><term>Jog<br />The device will jog forward or backward according to the wheel action.<br />
 	///								  The device will jog according to the Jog parameters</term></item>
-	///							<item><term>3</term><term>Set Voltage<br />The device will set either Preset Voltage 1 or 2 according to the joystick action.</term></item>
+	///							<item><term>3</term><term>Set Voltage<br />The device will set either Preset Voltage 1 or 2 according to the wheel action.</term></item>
 	/// 					</list> </param>
-	/// <param name="voltageAdjustRate">  The joystickmove at voltage rate.
+	/// <param name="voltageAdjustRate">  The wheelmove at voltage rate.
 	/// 					<list type=table>
 	///							<item><term>1</term><term>Low voltage change rate</term></item>
 	///							<item><term>2</term><term>Medium voltage change rate.></item>
 	///							<item><term>3</term><term>High voltage change rate.</term></item>
 	/// 					</list> </param>
-	/// <param name="voltageStep"> The joystick jog voltage as a percentage of MaxOutputVoltage,<br />
+	/// <param name="voltageStep"> The wheel jog voltage as a percentage of MaxOutputVoltage,<br />
 	/// 		  range 0 to 32767 equivalent to 0% to 100%. </param>
-	/// <param name="directionSense">	    The joystick direction sense. </param>
+	/// <param name="directionSense">	    The wheel direction sense. </param>
 	/// <param name="presetVoltage1">	    The first preset voltage as a percentage of MaxOutputVoltage,<br />
 	/// 		  range -32767 to 32767 equivalent to -100% to 100%. </param>
 	/// <param name="presetVoltage2">	    The second preset voltage as a percentage of MaxOutputVoltage,<br />
@@ -1055,59 +1062,59 @@ extern "C"
 	/// <param name="displayTimeout">	    The display timeout, range 0 to 480 in minutes (0 is off, otherwise the inactivity period before dimming the display). </param>
 	/// <param name="displayDimIntensity">	The display dimmed intensity, range 0 to 10 (after the timeout period the device display will dim). </param>
 	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
-	/// <seealso cref="PCC_SetMMIParamsExt(char const * serialNo, KPZ_JoyStickMode joystickMode, KPZ_JoyStickChangeRate voltageAdjustRate, __int32 voltageStep, KPZ_JoystickDirectionSense directionSense, __int32 presetVoltage1, __int32 presetVoltage2, __int16 displayIntensity)" />
+	/// <seealso cref="PCC_SetMMIParamsExt(char const * serialNo, KPZ_WheelMode wheelMode, KPZ_WheelChangeRate voltageAdjustRate, __int32 voltageStep, KPZ_WheelDirectionSense directionSense, __int32 presetVoltage1, __int32 presetVoltage2, __int16 displayIntensity)" />
 	/// <seealso cref="PCC_SetMMIParamsBlock(const char * serialNo, KPZ_MMIParams *mmiParams)" />
 	/// <seealso cref="PCC_GetMMIParamsBlock(const char * serialNo, KPZ_MMIParams *mmiParams)" />
-	KCUBEPIEZO_API  short __cdecl PCC_GetMMIParamsExt(char const * serialNo, KPZ_JoyStickMode *joystickMode, KPZ_JoyStickChangeRate *voltageAdjustRate, __int32 *voltageStep, KPZ_JoystickDirectionSense *directionSense,
+	KCUBEPIEZO_API  short __cdecl PCC_GetMMIParamsExt(char const * serialNo, KPZ_WheelMode *wheelMode, KPZ_WheelChangeRate *voltageAdjustRate, __int32 *voltageStep, KPZ_WheelDirectionSense *directionSense,
 								   __int32 *presetVoltage1, __int32 *presetVoltage2, __int16 *displayIntensity, __int16 *displayTimeout, __int16 *displayDimIntensity);
 
 	/// <summary> Get the MMI Parameters for the KCube Display Interface. </summary>
-	/// <remarks> @deprecated superceded by <see cref="PCC_GetMMIParamsExt(char const * serialNo, KPZ_JoyStickMode *joystickMode, KPZ_JoyStickChangeRate *voltageAdjustRate, __int32 *voltageStep, KPZ_JoystickDirectionSense *directionSense,	__int32 *presetVoltage1, __int32 *presetVoltage2, __int16 *displayIntensity, __int16 *displayTimeout, __int16 *displayDimIntensity)"/> </remarks>
+	/// <remarks> @deprecated superceded by <see cref="PCC_GetMMIParamsExt(char const * serialNo, KPZ_WheelMode *wheelMode, KPZ_WheelChangeRate *voltageAdjustRate, __int32 *voltageStep, KPZ_WheelDirectionSense *directionSense,	__int32 *presetVoltage1, __int32 *presetVoltage2, __int16 *displayIntensity, __int16 *displayTimeout, __int16 *displayDimIntensity)"/> </remarks>
 	/// <param name="serialNo"> The device serial no. </param>
-	/// <param name="joystickMode">	The device joystick mode.
+	/// <param name="wheelMode">	The device wheel mode.
 	/// 					<list type=table>
-	///							<item><term>1</term><term>Constant Voltage Rate<br />The device will continue moving until the end stop is reached or the duration of the joystick action</term></item>
-	///							<item><term>2</term><term>Jog<br />The device will jog forward or backward according to the joystick action.<br />
+	///							<item><term>1</term><term>Constant Voltage Rate<br />The device will continue moving until the end stop is reached or the duration of the wheel action</term></item>
+	///							<item><term>2</term><term>Jog<br />The device will jog forward or backward according to the wheel action.<br />
 	///								  The device will jog according to the Jog parameters</term></item>
-	///							<item><term>3</term><term>Set Voltage<br />The device will set either Preset Voltage 1 or 2 according to the joystick action.</term></item>
+	///							<item><term>3</term><term>Set Voltage<br />The device will set either Preset Voltage 1 or 2 according to the wheel action.</term></item>
 	/// 					</list> </param>
-	/// <param name="voltageAdjustRate">  The joystickmove at voltage rate.
+	/// <param name="voltageAdjustRate">  The wheelmove at voltage rate.
 	/// 					<list type=table>
 	///							<item><term>1</term><term>Low voltage change rate</term></item>
 	///							<item><term>2</term><term>Medium voltage change rate.></item>
 	///							<item><term>3</term><term>High voltage change rate.</term></item>
 	/// 					</list> </param>
-	/// <param name="voltageStep"> The joystick jog voltage as a percentage of MaxOutputVoltage,<br />
+	/// <param name="voltageStep"> The wheel jog voltage as a percentage of MaxOutputVoltage,<br />
 	/// 		  range 0 to 32767 equivalent to 0% to 100%. </param>
-	/// <param name="directionSense">	    The joystick direction sense. </param>
+	/// <param name="directionSense">	    The wheel direction sense. </param>
 	/// <param name="presetVoltage1">	    The first preset voltage as a percentage of MaxOutputVoltage,<br />
 	/// 		  range -32767 to 32767 equivalent to -100% to 100%. </param>
 	/// <param name="presetVoltage2">	    The second preset voltage as a percentage of MaxOutputVoltage,<br />
 	/// 		  range -32767 to 32767 equivalent to -100% to 100%. </param>
 	/// <param name="displayIntensity">	    The display intensity, range 0 to 100%. </param>
 	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
-	/// <seealso cref="PCC_SetMMIParams(char const * serialNo, KPZ_JoyStickMode joystickMode, KPZ_JoyStickChangeRate voltageAdjustRate, __int32 voltageStep, KPZ_JoystickDirectionSense directionSense, __int32 presetVoltage1, __int32 presetVoltage2, __int16 displayIntensity)" />
+	/// <seealso cref="PCC_SetMMIParams(char const * serialNo, KPZ_WheelMode wheelMode, KPZ_WheelChangeRate voltageAdjustRate, __int32 voltageStep, KPZ_WheelDirectionSense directionSense, __int32 presetVoltage1, __int32 presetVoltage2, __int16 displayIntensity)" />
 	/// <seealso cref="PCC_SetMMIParamsBlock(const char * serialNo, KPZ_MMIParams *mmiParams)" />
 	/// <seealso cref="PCC_GetMMIParamsBlock(const char * serialNo, KPZ_MMIParams *mmiParams)" />
-	KCUBEPIEZO_API  short __cdecl PCC_GetMMIParams(char const * serialNo, KPZ_JoyStickMode *joystickMode, KPZ_JoyStickChangeRate *voltageAdjustRate, __int32 *voltageStep, KPZ_JoystickDirectionSense *directionSense,
+	KCUBEPIEZO_API  short __cdecl PCC_GetMMIParams(char const * serialNo, KPZ_WheelMode *wheelMode, KPZ_WheelChangeRate *voltageAdjustRate, __int32 *voltageStep, KPZ_WheelDirectionSense *directionSense,
 		__int32 *presetVoltage1, __int32 *presetVoltage2, __int16 *displayIntensity);
 
 	/// <summary> Set the MMI Parameters for the KCube Display Interface. </summary>
 	/// <param name="serialNo"> The device serial no. </param>
-	/// <param name="joystickMode">	The device joystick mode.
+	/// <param name="wheelMode">	The device wheel mode.
 	/// 					<list type=table>
-	///							<item><term>1</term><term>Constant Voltage Rate<br />The device will continue moving until the end stop is reached or the duration of the joystick action</term></item>
-	///							<item><term>2</term><term>Jog<br />The device will jog forward or backward according to the joystick action.<br />
+	///							<item><term>1</term><term>Constant Voltage Rate<br />The device will continue moving until the end stop is reached or the duration of the wheel action</term></item>
+	///							<item><term>2</term><term>Jog<br />The device will jog forward or backward according to the wheel action.<br />
 	///								  The device will jog according to the Jog parameters</term></item>
-	///							<item><term>3</term><term>Set Voltage<br />The device will set either Preset Voltage 1 or 2 according to the joystick action.</term></item>
+	///							<item><term>3</term><term>Set Voltage<br />The device will set either Preset Voltage 1 or 2 according to the wheel action.</term></item>
 	/// 					</list> </param>
-	/// <param name="voltageAdjustRate">  The joystickmove at voltage rate.
+	/// <param name="voltageAdjustRate">  The wheelmove at voltage rate.
 	/// 					<list type=table>
 	///							<item><term>1</term><term>Low voltage change rate</term></item>
 	///							<item><term>2</term><term>Medium voltage change rate.></item>
 	///							<item><term>3</term><term>High voltage change rate.</term></item>
 	/// 					</list> </param>
-	/// <param name="voltageStep"> The joystick jog voltage as a percentage of MaxOutputVoltage,<br />
+	/// <param name="voltageStep"> The wheel jog voltage as a percentage of MaxOutputVoltage,<br />
 	/// 		  range 0 to 32767 equivalent to 0% to 100%. </param>
 	/// <param name="directionSense">	    The direction sense. </param>
 	/// <param name="presetVoltage1">	    The first preset voltage as a percentage of MaxOutputVoltage,<br />
@@ -1118,29 +1125,29 @@ extern "C"
 	/// <param name="displayTimeout">	    The display timeout, range 0 to 480 in minutes (0 is off, otherwise the inactivity period before dimming the display). </param>
 	/// <param name="displayDimIntensity">	The display dimmed intensity, range 0 to 10 (after the timeout period the device display will dim). </param>
 	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
-	/// <seealso cref="PCC_GetMMIParamsExt(char const * serialNo, KPZ_JoyStickMode *joystickMode, KPZ_JoyStickChangeRate *voltageAdjustRate, __int32 *voltageStep, KPZ_JoystickDirectionSense *directionSense, __int32 *presetVoltage1, __int32 *presetVoltage2, __int16 *displayIntensity)" />
+	/// <seealso cref="PCC_GetMMIParamsExt(char const * serialNo, KPZ_WheelMode *wheelMode, KPZ_WheelChangeRate *voltageAdjustRate, __int32 *voltageStep, KPZ_WheelDirectionSense *directionSense, __int32 *presetVoltage1, __int32 *presetVoltage2, __int16 *displayIntensity)" />
 	/// <seealso cref="PCC_SetMMIParamsBlock(const char * serialNo, KPZ_MMIParams *mmiParams)" />
 	/// <seealso cref="PCC_GetMMIParamsBlock(const char * serialNo, KPZ_MMIParams *mmiParams)" />
-	KCUBEPIEZO_API short __cdecl PCC_SetMMIParamsExt(char const * serialNo, KPZ_JoyStickMode joystickMode, KPZ_JoyStickChangeRate voltageAdjustRate, __int32 voltageStep, KPZ_JoystickDirectionSense directionSense,
+	KCUBEPIEZO_API short __cdecl PCC_SetMMIParamsExt(char const * serialNo, KPZ_WheelMode wheelMode, KPZ_WheelChangeRate voltageAdjustRate, __int32 voltageStep, KPZ_WheelDirectionSense directionSense,
 		__int32 presetVoltage1, __int32 presetVoltage2, __int16 displayIntensity, __int16 displayTimeout, __int16 displayDimIntensity);
 
 	/// <summary> Set the MMI Parameters for the KCube Display Interface. </summary>
-	/// <remarks> @deprecated superceded by <see cref="PCC_SetMMIParamsExt(char const * serialNo, KPZ_JoyStickMode joystickMode, KPZ_JoyStickChangeRate voltageAdjustRate, __int32 voltageStep, KPZ_JoystickDirectionSense directionSense, __int32 presetVoltage1, __int32 presetVoltage2, __int16 displayIntensity, __int16 displayTimeout, __int16 displayDimIntensity)"/> </remarks>
+	/// <remarks> @deprecated superceded by <see cref="PCC_SetMMIParamsExt(char const * serialNo, KPZ_WheelMode wheelMode, KPZ_WheelChangeRate voltageAdjustRate, __int32 voltageStep, KPZ_WheelDirectionSense directionSense, __int32 presetVoltage1, __int32 presetVoltage2, __int16 displayIntensity, __int16 displayTimeout, __int16 displayDimIntensity)"/> </remarks>
 	/// <param name="serialNo"> The device serial no. </param>
-	/// <param name="joystickMode">	The device joystick mode.
+	/// <param name="wheelMode">	The device wheel mode.
 	/// 					<list type=table>
-	///							<item><term>1</term><term>Constant Voltage Rate<br />The device will continue moving until the end stop is reached or the duration of the joystick action</term></item>
-	///							<item><term>2</term><term>Jog<br />The device will jog forward or backward according to the joystick action.<br />
+	///							<item><term>1</term><term>Constant Voltage Rate<br />The device will continue moving until the end stop is reached or the duration of the wheel action</term></item>
+	///							<item><term>2</term><term>Jog<br />The device will jog forward or backward according to the wheel action.<br />
 	///								  The device will jog according to the Jog parameters</term></item>
-	///							<item><term>3</term><term>Set Voltage<br />The device will set either Preset Voltage 1 or 2 according to the joystick action.</term></item>
+	///							<item><term>3</term><term>Set Voltage<br />The device will set either Preset Voltage 1 or 2 according to the wheel action.</term></item>
 	/// 					</list> </param>
-	/// <param name="voltageAdjustRate">  The joystickmove at voltage rate.
+	/// <param name="voltageAdjustRate">  The wheelmove at voltage rate.
 	/// 					<list type=table>
 	///							<item><term>1</term><term>Low voltage change rate</term></item>
 	///							<item><term>2</term><term>Medium voltage change rate.></item>
 	///							<item><term>3</term><term>High voltage change rate.</term></item>
 	/// 					</list> </param>
-	/// <param name="voltageStep"> The joystick jog voltage as a percentage of MaxOutputVoltage,<br />
+	/// <param name="voltageStep"> The wheel jog voltage as a percentage of MaxOutputVoltage,<br />
 	/// 		  range 0 to 32767 equivalent to 0% to 100%. </param>
 	/// <param name="directionSense">	    The direction sense. </param>
 	/// <param name="presetVoltage1">	    The first preset voltage as a percentage of MaxOutputVoltage,<br />
@@ -1149,10 +1156,10 @@ extern "C"
 	/// 		  range -32767 to 32767 equivalent to -100% to 100%. </param>
 	/// <param name="displayIntensity">	    The display intensity, range 0 to 100%. </param>
 	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
-	/// <seealso cref="PCC_GetMMIParams(char const * serialNo, KPZ_JoyStickMode *joystickMode, KPZ_JoyStickChangeRate *voltageAdjustRate, __int32 *voltageStep, KPZ_JoystickDirectionSense *directionSense, __int32 *presetVoltage1, __int32 *presetVoltage2, __int16 *displayIntensity)" />
+	/// <seealso cref="PCC_GetMMIParams(char const * serialNo, KPZ_WheelMode *wheelMode, KPZ_WheelChangeRate *voltageAdjustRate, __int32 *voltageStep, KPZ_WheelDirectionSense *directionSense, __int32 *presetVoltage1, __int32 *presetVoltage2, __int16 *displayIntensity)" />
 	/// <seealso cref="PCC_SetMMIParamsBlock(const char * serialNo, KPZ_MMIParams *mmiParams)" />
 	/// <seealso cref="PCC_GetMMIParamsBlock(const char * serialNo, KPZ_MMIParams *mmiParams)" />
-	KCUBEPIEZO_API short __cdecl PCC_SetMMIParams(char const * serialNo, KPZ_JoyStickMode joystickMode, KPZ_JoyStickChangeRate voltageAdjustRate, __int32 voltageStep, KPZ_JoystickDirectionSense directionSense,
+	KCUBEPIEZO_API short __cdecl PCC_SetMMIParams(char const * serialNo, KPZ_WheelMode wheelMode, KPZ_WheelChangeRate voltageAdjustRate, __int32 voltageStep, KPZ_WheelDirectionSense directionSense,
 								   __int32 presetVoltage1, __int32 presetVoltage2, __int16 displayIntensity);
 
 	/// <summary> Requests that the trigger config parameters are read from the device. </summary>
@@ -1226,8 +1233,8 @@ extern "C"
 	/// <param name="serialNo"> The device serial no. </param>
 	/// <param name="mmiParams"> Options for controlling the mmi. </param>
 	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
-	/// <seealso cref="PCC_GetMMIParamsExt(char const * serialNo, KPZ_JoyStickMode *joystickMode, KPZ_JoyStickChangeRate *voltageAdjustRate, __int32 *voltageStep, KPZ_JoystickDirectionSense *directionSense, __int32 *presetVoltage1, __int32 *presetVoltage2, __int16 *displayIntensity, __int16 *displayTimeout, __int16 *displayDimIntensity)" />
-	/// <seealso cref="PCC_SetMMIParamsExt(char const * serialNo, KPZ_JoyStickMode joystickMode, KPZ_JoyStickChangeRate voltageAdjustRate, __int32 voltageStep, KPZ_JoystickDirectionSense directionSense, __int32 presetVoltage1, __int32 presetVoltage2, __int16 displayIntensity, __int16 displayTimeout, __int16 displayDimIntensity)" />
+	/// <seealso cref="PCC_GetMMIParamsExt(char const * serialNo, KPZ_WheelMode *wheelMode, KPZ_WheelChangeRate *voltageAdjustRate, __int32 *voltageStep, KPZ_WheelDirectionSense *directionSense, __int32 *presetVoltage1, __int32 *presetVoltage2, __int16 *displayIntensity, __int16 *displayTimeout, __int16 *displayDimIntensity)" />
+	/// <seealso cref="PCC_SetMMIParamsExt(char const * serialNo, KPZ_WheelMode wheelMode, KPZ_WheelChangeRate voltageAdjustRate, __int32 voltageStep, KPZ_WheelDirectionSense directionSense, __int32 presetVoltage1, __int32 presetVoltage2, __int16 displayIntensity, __int16 displayTimeout, __int16 displayDimIntensity)" />
 	/// <seealso cref="PCC_SetMMIParamsBlock(const char * serialNo, KPZ_MMIParams *mmiParams)" />
 	KCUBEPIEZO_API short __cdecl PCC_GetMMIParamsBlock(char const * serialNo, KPZ_MMIParams *mmiParams);
 
@@ -1235,8 +1242,8 @@ extern "C"
 	/// <param name="serialNo"> The device serial no. </param>
 	/// <param name="mmiParams"> Options for controlling the mmi. </param>
 	/// <returns> The error code (see \ref C_DLL_ERRORCODES_page "Error Codes") or zero if successful. </returns>
-	/// <seealso cref="PCC_GetMMIParamsExt(char const * serialNo, KPZ_JoyStickMode *joystickMode, KPZ_JoyStickChangeRate *voltageAdjustRate, __int32 *voltageStep, KPZ_JoystickDirectionSense *directionSense, __int32 *presetVoltage1, __int32 *presetVoltage2, __int16 *displayIntensity, __int16 *displayTimeout, __int16 *displayDimIntensity)" />
-	/// <seealso cref="PCC_SetMMIParamsExt(char const * serialNo, KPZ_JoyStickMode joystickMode, KPZ_JoyStickChangeRate voltageAdjustRate, __int32 voltageStep, KPZ_JoystickDirectionSense directionSense, __int32 presetVoltage1, __int32 presetVoltage2, __int16 displayIntensity, __int16 displayTimeout, __int16 displayDimIntensity)" />
+	/// <seealso cref="PCC_GetMMIParamsExt(char const * serialNo, KPZ_WheelMode *wheelMode, KPZ_WheelChangeRate *voltageAdjustRate, __int32 *voltageStep, KPZ_WheelDirectionSense *directionSense, __int32 *presetVoltage1, __int32 *presetVoltage2, __int16 *displayIntensity, __int16 *displayTimeout, __int16 *displayDimIntensity)" />
+	/// <seealso cref="PCC_SetMMIParamsExt(char const * serialNo, KPZ_WheelMode wheelMode, KPZ_WheelChangeRate voltageAdjustRate, __int32 voltageStep, KPZ_WheelDirectionSense directionSense, __int32 presetVoltage1, __int32 presetVoltage2, __int16 displayIntensity, __int16 displayTimeout, __int16 displayDimIntensity)" />
 	/// <seealso cref="PCC_GetMMIParamsBlock(const char * serialNo, KPZ_MMIParams *mmiParams)" />
 	KCUBEPIEZO_API short __cdecl PCC_SetMMIParamsBlock(char const * serialNo, KPZ_MMIParams *mmiParams);
 

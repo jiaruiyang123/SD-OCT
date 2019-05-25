@@ -724,6 +724,14 @@ extern "C"
     /// 		  \include CodeSnippet_connectionN.cpp
 	TDIENGINE_API bool __cdecl TDI_LoadSettings(char const * serialNo, short channel);
 
+	/// <summary> Update device with named settings. </summary>
+	/// <param name="serialNo"> The serial no. </param>
+	/// <param name="channel">  The channel. </param>
+	/// <param name="settingsName"> Name of settings stored away from device. </param>
+	/// <returns> <c>true</c> if successful, false if not. </returns>
+	///             \include CodeSnippet_connection1.cpp
+	TDIENGINE_API bool __cdecl TDI_LoadNamedSettings(char const * serialNo, short channel, char const *settingsName);
+
 	/// <summary> Disable the channel so that motor can be moved by hand. </summary>
 	/// <remarks> When disabled power is removed from the motor and it can be freely moved.</remarks>
 	/// <param name="serialNo">	The controller serial no. </param>

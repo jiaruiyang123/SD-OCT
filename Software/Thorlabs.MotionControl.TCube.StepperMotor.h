@@ -715,6 +715,13 @@ extern "C"
     /// 		  \include CodeSnippet_connection1.cpp
 	TCUBESTEPPER_API bool __cdecl SCC_LoadSettings(char const * serialNo);
 
+	/// <summary> Update device with named settings. </summary>
+	/// <param name="serialNo"> The device serial no. </param>
+	/// <param name="settingsName"> Name of settings stored away from device. </param>
+	/// <returns> <c>true</c> if successful, false if not. </returns>
+	///             \include CodeSnippet_connection1.cpp
+	TCUBESTEPPER_API bool __cdecl SCC_LoadNamedSettings(char const * serialNo, char const *settingsName);
+
 	/// <summary> persist the devices current settings. </summary>
 	/// <param name="serialNo">	The device serial no. </param>
 	/// <returns> <c>true</c> if successful, false if not. </returns>
