@@ -1,0 +1,11 @@
+Laser as sample clock
+Delayed sample clock
+row by row update and one shot update
+time in saved data file name
+lissajous pattern included in raster scan
+saving issue resolved
+adds current time in the saved file
+live mirror tracking included
+Case structure: either mirror can be tracked or PMT signal can be acquired
+modified smoothening function added (not based on convolution)
+this is the latest version 

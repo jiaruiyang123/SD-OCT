@@ -1,0 +1,62 @@
+<?xml version='1.0' standalone='yes' ?>
+<LVData xmlns="http://www.ni.com/LVData">
+<Version>14.0.1f11</Version>
+<Cluster>
+<Name></Name>
+<NumElts>6</NumElts>
+<EW>
+<Name>Enum</Name>
+<Choice>dfa</Choice>
+<Val>0</Val>
+</EW>
+<I32>
+<Name>Numeric (I32)</Name>
+<Val>0</Val>
+</I32>
+<DBL>
+<Name>Numeric (DBL)</Name>
+<Val>0.00000000000000</Val>
+</DBL>
+<CXT>
+<Name>Numeric (CXT)</Name>
+<Val>0.0000000000000000000 +0.0000000000000000000 i</Val>
+</CXT>
+<Array>
+<Name>Array (DBL)</Name>
+<Dimsize>0</Dimsize>
+<DBL>
+<Name></Name>
+<Val></Val>
+</DBL>
+</Array>
+<Cluster>
+<Name></Name>
+<NumElts>5</NumElts>
+<EW>
+<Name>Enum</Name>
+<Choice>dfa</Choice>
+<Val>0</Val>
+</EW>
+<I32>
+<Name>Numeric (I32)</Name>
+<Val>0</Val>
+</I32>
+<DBL>
+<Name>Numeric (DBL)</Name>
+<Val>0.00000000000000</Val>
+</DBL>
+<CXT>
+<Name>Numeric (CXT)</Name>
+<Val>0.0000000000000000000 +0.0000000000000000000 i</Val>
+</CXT>
+<Array>
+<Name>Array (DBL)</Name>
+<Dimsize>0</Dimsize>
+<DBL>
+<Name></Name>
+<Val></Val>
+</DBL>
+</Array>
+</Cluster>
+</Cluster>
+</LVData>
